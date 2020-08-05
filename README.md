@@ -5,7 +5,7 @@
 ## Members
 * Tan, Sean (s3806690)
 * Jin, Tae Hyun (s3771369)
-* SURNAME, GivenName (sXXXX)
+* Lat, Gabriel (s3723189)
 * SURNAME, GivenName (sXXXX)
 * SURNAME, GivenName (sXXXX)
 
