@@ -4,15 +4,15 @@
 
 ## Members
 * Tan, Sean (s3806690)
-* SURNAME, GivenName (sXXXX)
+* Jin, Tae Hyun (s3771369)
 * SURNAME, GivenName (sXXXX)
 * SURNAME, GivenName (sXXXX)
 * SURNAME, GivenName (sXXXX)
 
 ## Records
 
-* Github repository : https://github.com/RMIT-SEPT/majorproject-5-wed-16-30-7
-* Trello Workspace : https://trello.com/b/XwKVcpMM/sept-assignment-1
+* Github repository : https://github.com/RMIT-SEPT/MajorProject/Groupx
+* ClickUp Workspace : https://app.clickup.com/xxxx/yyyy
 
 
 ## Code documentation
