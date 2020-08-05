@@ -6,7 +6,7 @@
 * Tan, Sean (s3806690)
 * Jin, Tae Hyun (s3771369)
 * Lat, Gabriel (s3723189)
-* SURNAME, GivenName (sXXXX)
+* Wijesinghe, Isuru (s3719421)
 * SURNAME, GivenName (sXXXX)
 
 ## Records
