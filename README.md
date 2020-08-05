@@ -7,7 +7,7 @@
 * Jin, Tae Hyun (s3771369)
 * Lat, Gabriel (s3723189)
 * Wijesinghe, Isuru (s3719421)
-* SURNAME, GivenName (sXXXX)
+* Gurevich, Andrew (s3788072)
 
 ## Records
 
