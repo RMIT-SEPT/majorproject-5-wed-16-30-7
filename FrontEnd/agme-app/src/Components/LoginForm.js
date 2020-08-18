@@ -1,25 +1,22 @@
 import React from 'react';
-
+import './LoginForm.scss';
 class LoginForm extends React.Component {
 
     render() {
         return (
-            <div className="loginForm">
-                <form>
-                    <div>
-                        <label>
-                            User Name:
-                    <input type="text" name="userName" />
-                        </label>
+            <div>
+                <form className="login-form">
+                    <h1>Login</h1>
+                    <div className="form-input-material">
+                        <label className="label" for="username">Username</label>
+                        <input type="text" name="username" id="username" placeholder="Enter Username " className="form-control-material" required />
                     </div>
 
-                    <div>
-                        <label>
-                            Password:
-                    <input type="text" name="userName" />
-                        </label>
+                    <div className="form-input-material">
+                        <label className="label" for="password">Password</label>
+                        <input type="password" name="password" placeholder=" " className="form-control-material" required />
                     </div>
-                    <input type="submit" value="Submit" />
+                    <button type="submit" class="btn btn-primary btn-ghost" >Login</button>
                 </form>
             </div>
         );
