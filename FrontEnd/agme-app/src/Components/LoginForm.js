@@ -5,22 +5,22 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className="loginForm">
-
-                <div>
-                    <label>
-                        User Name:
+                <form>
+                    <div>
+                        <label>
+                            User Name:
                     <input type="text" name="userName" />
-                    </label>
-                </div>
+                        </label>
+                    </div>
 
-                <div>
-                    <label>
-                        Password:
+                    <div>
+                        <label>
+                            Password:
                     <input type="text" name="userName" />
-                    </label>
-                </div>
-                <input type="submit" value="Submit" />
-
+                        </label>
+                    </div>
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         );
     }
