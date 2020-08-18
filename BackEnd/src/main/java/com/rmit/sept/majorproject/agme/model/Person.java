@@ -1,23 +1,48 @@
 package com.rmit.sept.majorproject.agme.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-public class Customer {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     private String name;
-    private String address;
-    private String phone;
+
+    @NotBlank
     private String username;
+
+    @NotBlank
     private String password;
 
+    @NotBlank
+    // a = admin, c = customer, e = employee
+    private char accountType;
+
+//  can comment these out when testing, pretty extra
+    private String address;
+    private String phone;
     private Date created_At;
     private Date updated_At;
 
-    public Customer(){}
+    public Person() {
+
+    }
+
+    // getters and setters
+    public char getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(char accountType) {
+        this.accountType = accountType;
+    }
 
     public Long getId() {
         return id;
@@ -35,21 +60,6 @@ public class Customer {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public String getUsername() {
         return username;
@@ -81,6 +91,21 @@ public class Customer {
 
     public void setUpdated_At(Date updated_At) {
         this.updated_At = updated_At;
+    }
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @PrePersist
