@@ -12,7 +12,7 @@
 ## Records
 
 * Github repository : https://github.com/RMIT-SEPT/MajorProject/Groupx
-* ClickUp Workspace : https://app.clickup.com/xxxx/yyyy
+* Trello board: https://trello.com/b/XwKVcpMM/sept-5wed-1630-7
 
 
 ## Code documentation
