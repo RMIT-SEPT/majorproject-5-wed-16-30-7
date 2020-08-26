@@ -5,6 +5,7 @@ import com.rmit.sept.majorproject.agme.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Service
@@ -26,6 +27,25 @@ public class PersonService {
 //        //logic
 //        return personRepository.save(person);
 //    }
+
+    public boolean Login(Person person) {
+        if(personIdExist(person.getId())) {
+            if (person.getPassword() == getPersonById(person.getId()).getPassword()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public char getPersonAccountType(Person person) {
+        if(personIdExist(person.getId())) {
+            return person.getAccountType();
+        }
+        else {
+            // this shouldn't happen
+            return '\n';
+        }
+    }
 
     public boolean addPerson(Person person) {
         if (personIdExist(person.getId())) {

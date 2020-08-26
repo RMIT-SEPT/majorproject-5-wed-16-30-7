@@ -22,6 +22,13 @@ public class PersonController {
         this.personService = personService;
     }
 
+    @PostMapping("login")
+    public void Login(@Valid @RequestBody Person person, BindingResult result) {
+        if (personService.Login(person)) {
+
+        }
+    }
+
     @PostMapping("")
     public ResponseEntity<?> createNewPerson(@Valid @RequestBody Person person, BindingResult result) {
         if (result.hasErrors()){
