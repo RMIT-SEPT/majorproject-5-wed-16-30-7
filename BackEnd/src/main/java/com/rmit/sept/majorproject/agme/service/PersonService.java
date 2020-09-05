@@ -5,45 +5,40 @@ import com.rmit.sept.majorproject.agme.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.BiPredicate;
 
 @Service
 public class PersonService {
 
-    private PersonRepository personRepository;
+    private static PersonRepository personRepository;
 
     @Autowired
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 
-    public Iterable<Person> getAllPersons() {
+    public static List<Person> getAllPersons() {
         return personRepository.findAll();
     }
 
-//    public Person saveOrUpdatePerson(Person person) {
-//
-//        //logic
-//        return personRepository.save(person);
-//    }
 
-    public boolean Login(Person person) {
-        if(personIdExist(person.getId())) {
-            if (person.getPassword() == getPersonById(person.getId()).getPassword()) {
-                return true;
-            }
-        }
-        return false;
+    public boolean Login(String username, String password) {
+        return verifyPassword.test(username, password);
     }
 
-    public char getPersonAccountType(Person person) {
-        if(personIdExist(person.getId())) {
-            return person.getAccountType();
+    public static BiPredicate<String,String> verifyPassword = (username, password) ->
+            getPersonByUsername(username)
+            .getPassword()
+            .equals(password);
+
+    public char getPersonAccountTypeById(Long id) {
+        if(personIdExist(id)) {
+            return getPersonById(id).getAccountType();
         }
         else {
-            // this shouldn't happen
-            return '\n';
+            return 'n';
         }
     }
 
@@ -55,22 +50,26 @@ public class PersonService {
         return true;
     }
 
-    public Person getPersonById(Long id) {
-        for (Person p: getAllPersons()) {
-            if (p.getId() == id) {
-                return p;
-            }
-        }
-        return null;
+    public static Person getPersonById(Long id) {
+        return personRepository.findAll()
+                .stream()
+                .filter(person -> person.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(String.format("User ID %s not found", id)));
+    }
+    
+    public static Person getPersonByUsername(String username) {
+        return personRepository.findAll()
+                .stream()
+                .filter(person -> person.getUsername().equals(username))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(String.format("Username %s not found", username)));
     }
 
     public boolean personIdExist(Long id) {
-        for (Person p: getAllPersons()) {
-            if (p.getId() == id) {
-                return true;
-            }
-        }
-        return false;
+        return getAllPersons()
+                .stream()
+                .anyMatch(person -> person.getId().equals(id));
     }
 
     public boolean updatePerson(Long id, Person person) {
@@ -84,17 +83,14 @@ public class PersonService {
 
     public boolean updatePersonPassword(Long id, String password) {
         if (personIdExist(id)) {
-            Person person = getPersonById(id);
-            person.setPassword(password);
-            personRepository.save(person);
+            Person p = getPersonById(id);
+            p.setPassword(password);
+            personRepository.save(p);
             return true;
         }
         return false;
     }
 
-    public void deletePerson(Person person) {
-        personRepository.delete(person);
-    }
 
     public void deletePersonById(Long id) {
         personRepository.deleteById(id);
