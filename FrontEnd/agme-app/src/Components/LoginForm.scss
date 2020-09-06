@@ -78,7 +78,7 @@ body {
   background: transparent;
  
 }
-span{
+#rememberMe{
   color: #777;
   font-size: 12px;
 }
@@ -89,6 +89,7 @@ span{
   cursor: pointer;
   display: block;
   margin: auto;
+  margin-top: 20px;
   background: linear-gradient(to right,#93aedf,#b8d5d8);
   border: 0;
   outline: none;
@@ -105,4 +106,9 @@ span{
 
 #register{
   left: 450px;
+}
+
+.error{
+  color: red;
+  font-size: 11px;
 }

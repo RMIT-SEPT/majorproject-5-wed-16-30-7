@@ -19,7 +19,7 @@ class LoginForm extends React.Component {
         document.getElementById("login").style.left = "-400px";
         document.getElementById("register").style.left = "50px";
         document.getElementById("btn").style.left = "110px";
-        document.getElementById("form-box").style.height = "650px";
+        document.getElementById("form-box").style.height = "700px";
     }
 
     login() {
@@ -50,13 +50,13 @@ class LoginForm extends React.Component {
                 <div id="form-box" className="form-box">
                     <div className="button-box">
                         <div id="btn"></div>
-                        <button type="button" className="toggle-btn" onClick={this.login}>Log In</button>
+                        <button type="button" className="toggle-btn" onClick={this.login}>Login</button>
                         <button type="button" className="toggle-btn" onClick={this.register}>Register</button>
                     </div>
                     <form id="login" className="input-group">
                         <input type="text" className="input-field" placeholder="User Name" name='username' value={this.state.username} onChange={this.handleChange} required />
                         <input type="password" className="input-field" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} required />
-                        <input type="checkbox" className="check-box" /><span>Remember Me</span>
+                        <input type="checkbox" className="check-box" /><span id="rememberMe">Remember Me</span>
                         <button type="submit" className="submit-btn" onClick={this.getCustomerLogin}>Login</button>
                     </form>
                     <RegistartionForm />
