@@ -1,5 +1,6 @@
 import React from 'react';
 import './LoginForm.scss';
+import UserService from '../Services/UserService';
 
 class RegistrationForm extends React.Component {
 
@@ -12,6 +13,7 @@ class RegistrationForm extends React.Component {
             username: '',
             password: '',
             confirmPass: '',
+            accountType: 'c',
 
             errors: {
                 name: '',
@@ -40,7 +42,7 @@ class RegistrationForm extends React.Component {
             return valid;
         }
 
-        //Submit form if form is valid
+        //Submit form if valid
         if (validateForm(this.state.errors)) {
             console.info('Valid Form');
             let customer = {
@@ -48,9 +50,15 @@ class RegistrationForm extends React.Component {
                 address: this.state.address,
                 phone: this.state.phone,
                 username: this.state.username,
-                password: this.state.password
+                password: this.state.password,
+                accountType: this.state.accountType
             };
             console.log('customerLogin =>' + JSON.stringify(customer));
+
+            UserService.createCustomer(customer);
+            // UserService.createCustomer(customer).then(res => {
+            //     this.props.history.push('/dashboard');
+            // });
         } else {
             console.error('Invalid Form')
         }
