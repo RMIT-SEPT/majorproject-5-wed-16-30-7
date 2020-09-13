@@ -1,9 +1,16 @@
 import React from 'react';
+import './Dashboard.scss';
 
 class Dashboard extends React.Component {
     render() {
         return (
-            <h1>Welcome!</h1>
+            <div>
+                <div className="TopContainer">
+                    <div className="TodayBookings"></div>
+                    <div className="UpcomingBookings"></div>
+                </div>
+                <div className="PastBookings"></div>
+            </div>
         )
     }
 }
