@@ -108,22 +108,22 @@ class RegistrationForm extends React.Component {
     render() {
         const { errors } = this.state;
         return (
-            <form id="register" className="input-group">
-                <input type="text" className="input-field" name='name' placeholder="Full Name" value={this.state.name} onChange={this.handleChange} required />
+            <form id="register" className="input-group" onSubmit={this.getCustomerRegistration}>
+                <input type="text" className="input-field" name='name' data-testid="name" placeholder="Full Name" value={this.state.name} onChange={this.handleChange} required />
                 {errors.name.length > 0 &&
                     <span className='error'>{errors.name}</span>}
-                <input type="text" className="input-field" name='address' placeholder="Address" value={this.state.address} onChange={this.handleChange} required />
-                <input type="text" className="input-field" name='phone' placeholder="Phone Number" value={this.state.phone} onChange={this.handleChange} required />
-                <input type="text" className="input-field" name='username' placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
+                <input type="text" className="input-field" name='address' data-testid="address" placeholder="Address" value={this.state.address} onChange={this.handleChange} required />
+                <input type="text" className="input-field" name='phone' data-testid="phone" placeholder="Phone Number" value={this.state.phone} onChange={this.handleChange} required />
+                <input type="text" className="input-field" name='username' data-testid="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                 {errors.username.length > 0 &&
                     <span className='error'>{errors.username}</span>}
-                <input type="password" className="input-field" name='password' placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
+                <input type="password" className="input-field" name='password' data-testid="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
                 {errors.password.length > 0 &&
                     <span className='error'>{errors.password}</span>}
-                <input type="password" className="input-field" name='confirmPass' placeholder="Confirm Password" value={this.state.confirmPass} onChange={this.handleChange} required />
+                <input type="password" className="input-field" name='confirmPass' data-testid="confirmPass" placeholder="Confirm Password" value={this.state.confirmPass} onChange={this.handleChange} required />
                 {errors.confirmPass.length > 0 &&
                     <span className='error'>{errors.confirmPass}</span>}
-                <button type="submit" className="submit-btn" onClick={this.getCustomerRegistration}>Register</button>
+                <button type="submit" className="submit-btn">Register</button>
             </form>
         );
     }
