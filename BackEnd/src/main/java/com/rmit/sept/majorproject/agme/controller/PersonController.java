@@ -36,7 +36,7 @@ public class PersonController {
             return new ResponseEntity<String>("Invalid Person Object", HttpStatus.BAD_REQUEST);
         }
         return personService.addPerson(person) ?
-                new ResponseEntity<Person>(person, HttpStatus.CREATED) : new ResponseEntity<Person>(person, HttpStatus.BAD_REQUEST);
+                new ResponseEntity<Person>(person, HttpStatus.CREATED) : new ResponseEntity<String>("Failed to create person", HttpStatus.BAD_REQUEST);
     }
 
     // general update
