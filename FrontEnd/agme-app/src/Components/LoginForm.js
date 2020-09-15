@@ -54,8 +54,8 @@ class LoginForm extends React.Component {
                         <button type="button" className="toggle-btn" onClick={this.register}>Register</button>
                     </div>
                     <form id="login" className="input-group" onSubmit={this.getCustomerLogin}>
-                        <input type="text" className="input-field" placeholder="User Name" name='username' value={this.state.username} onChange={this.handleChange} required />
-                        <input type="password" className="input-field" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} required />
+                        <input type="text" id="username" className="input-field" placeholder="User Name" name='username' value={this.state.username} onChange={this.handleChange} required />
+                        <input type="password" id="password" className="input-field" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} required />
                         <input type="checkbox" className="check-box" /><span id="rememberMe">Remember Me</span>
                         <button type="submit" className="submit-btn" >Login</button>
                     </form>

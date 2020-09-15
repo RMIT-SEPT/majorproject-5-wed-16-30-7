@@ -26,7 +26,8 @@ describe("Render form", () => {
         act(() => {
             render(<RegistrationForm />, container);
         });
-        expect(container).toBeTruthy();
+        expect(container).toMatchSnapshot();
+
     });
 })
 
@@ -47,3 +48,10 @@ describe("Input Values", () => {
 
 });
 
+// describe("Check handleChange function and errors states", () => {
+//     const handleChange = jest.spyOn(RegistrationForm, 'handleChange');
+//     const evnetTriggered = RegistrationForm.handleChange();
+
+//     expect(handleChange).toHaveBeenCalled();
+//     expect(evnetTriggered).toBe(true);
+// })
