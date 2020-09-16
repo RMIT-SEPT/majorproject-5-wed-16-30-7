@@ -80,7 +80,7 @@ class PersonControllerTest {
 
 
 	@Test
-	void createNewPersonTest() throws Exception {
+	void registerTest() throws Exception {
 //		String json = "{" +
 //				" \"name\":\"Bob\"," +
 //				" \"username\":\"bob123\"" +
