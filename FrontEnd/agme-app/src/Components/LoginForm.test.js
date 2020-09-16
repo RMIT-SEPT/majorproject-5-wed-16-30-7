@@ -6,24 +6,24 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const simulateChangeOnInput = (wrapper, inputSelector, newValue) => {
+const simulateChangeOnInput = (wrapper, inputSelector, inputName, newValue) => {
     let input = wrapper.find(inputSelector);
     input.simulate('change', {
         preventDefault: () => { },
-        target: { value: newValue }
+        target: {
+            name: inputName,
+            value: newValue
+        }
 
     });
-    console.log(newValue);
-    console.log(inputSelector);
-
     return wrapper.find(inputSelector);
 };
 
 
-describe("Login Form Unit Test", () => {
+describe("Login Form Unit Tests", () => {
 
 
-    it("Should render the form component", () => {
+    it("Should render the form component correctly", () => {
         const component = shallow(<LoginForm />);
         expect(component).toHaveLength(1);
     });
@@ -47,9 +47,21 @@ describe("Login Form Unit Test", () => {
             const usernameInput = simulateChangeOnInput(
                 wrapper,
                 '#username',
+                'username',
                 'TestUsername'
             );
             expect(usernameInput.props().value).toEqual('TestUsername');
+        });
+
+        it("Changes input value for password", () => {
+            const wrapper = mount(<LoginForm />);
+            const usernameInput = simulateChangeOnInput(
+                wrapper,
+                '#password',
+                'password',
+                'TestPassword'
+            );
+            expect(usernameInput.props().value).toEqual('TestPassword');
         });
     });
 

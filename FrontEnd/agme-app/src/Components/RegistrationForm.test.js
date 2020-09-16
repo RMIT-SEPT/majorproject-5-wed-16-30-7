@@ -48,10 +48,3 @@ describe("Input Values", () => {
 
 });
 
-// describe("Check handleChange function and errors states", () => {
-//     const handleChange = jest.spyOn(RegistrationForm, 'handleChange');
-//     const evnetTriggered = RegistrationForm.handleChange();
-
-//     expect(handleChange).toHaveBeenCalled();
-//     expect(evnetTriggered).toBe(true);
-// })
