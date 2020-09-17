@@ -1,23 +1,89 @@
-.PastBookings{
-    height: 500px;
-    width: 1100px;
-    background: whitesmoke;
-    position: relative;
+.Header{
+    background: #fff;
+    height: 70px;
+ 
+
+    h1{
+        text-align: left;
+        width: fit-content;
+        padding-top: 20px;
+        padding-left: 80px;
+    }
 }
 
+.content-area{
+    padding: 70px;
 
-.TodayBookings{
+}
+
+.top-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.todays-bookings{
     height: 300px;
-    width: 700px;
-    background: whitesmoke;
+    width: 60%;
+    background: #fff;
+    
+}
+
+.upcoming-bookings{
+    height: 300px;
+    width: 30%;
+    background: #fff;
+}
+
+.past-bookings{
     margin-top: 100px;
-    margin-bottom: 100px;
-    position: relative;
+    height: 400px;
+    width: 100%;
+    background: #fff;
 }
 
-.UpcomingBookings{
-    height: 300px;
-    width: 200px;
-    background: whitesmoke;
-    position: relative;
+.table-top{
+    padding: 20px;
+}
+
+.divider{
+    background: grey;
+    height: 2px;
+    
+}
+
+.past-booking-details{
+    height: 60px;
+    background: #fff;
+   
+}
+
+.past-booking-content{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 90%;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 10px;
+  
+}
+
+.headings{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-right: 15px;
+}
+
+.service-provider{
+    padding: 15px;
+}
+
+.worker-details{
+    padding: 15px;
+}
+.date{
+    padding: 15px;
+
 }
