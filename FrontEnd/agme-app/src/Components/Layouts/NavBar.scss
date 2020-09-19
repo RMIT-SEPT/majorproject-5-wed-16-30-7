@@ -6,6 +6,7 @@
     height: 100%;
     transition: 0.5s;
     overflow: hidden;
+    margin-top: 70px;
 
     ul{
         position: absolute;
@@ -35,7 +36,7 @@
 }
 
 .navigation:hover{
-    width: 20%;
+    width: 15%;
 
     .content-area{
         width: 70%;

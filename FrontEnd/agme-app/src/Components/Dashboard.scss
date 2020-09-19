@@ -2,7 +2,7 @@
     background: #fff;
     height: 70px;
     width: 100%;
-
+    position: fixed;
     h1{
         text-align: left;
         width: fit-content;
@@ -12,36 +12,51 @@
 }
 
 .content-area{
+    margin-top: 60px;
     padding: 70px;
     float: right;
-    width: 70%;
+    width: 80%;
+    transition: 0.5s;
 }
 
-
-
+.navigation:hover + .content-area{
+    width: 75%;
+    transition: 0.5s;
+}
 .top-container{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+    padding: 5px;
+    width: 100%;
 }
 
 .todays-bookings{
     height: 300px;
-    width: 60%;
+    width: 700px;
     background: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
     
 }
 
 .upcoming-bookings{
     height: 300px;
-    width: 30%;
+    width: 500px;
     background: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .past-bookings{
-    margin-top: 100px;
-    height: 400px;
-    width: 60%;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    height: 450px;
+    max-width: 1270px;
     background: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
 }
 
 .table-top{
@@ -89,4 +104,11 @@
 .date{
     padding: 15px;
 
+}
+
+@media only screen and (max-width:1000px){
+    .top-container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

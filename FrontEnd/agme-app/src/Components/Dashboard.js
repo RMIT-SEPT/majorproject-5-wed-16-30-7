@@ -49,15 +49,6 @@ class Dashboard extends React.Component {
                                 <div className="past-booking-content"></div>
                             </div>
                             <div className="divider"></div>
-                            <div className="past-booking-details">
-                                <div className="past-booking-content"></div>
-                            </div>
-                            <div className="divider"></div>
-                            <div className="past-booking-details">
-                                <div className="past-booking-content">
-                                    <span>Service Provider</span>
-                                </div>
-                            </div>
 
                         </div>
                     </section>
