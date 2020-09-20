@@ -64,3 +64,11 @@
     white-space: nowrap;
     font-size: larger;
 }
+
+
+@media only screen and (max-width:1000px){
+
+    .navigation:hover{
+        width: 18%;
+    }
+}

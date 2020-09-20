@@ -28,7 +28,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 15px;
     padding: 5px;
-    width: 100%;
+    max-width: 100%;
 }
 
 .todays-bookings{
@@ -37,78 +37,90 @@
     background: #fff;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    
+    border-radius: 5px;
 }
 
 .upcoming-bookings{
-    height: 300px;
     width: 500px;
     background: #fff;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    h2{
+        padding: 20px;
+        text-align: left;
+    }
 }
 
+.upcoming-bookings-list{
+
+    li{
+        list-style: none;
+    }
+    
+}
+
+.booking-content{
+    border-top: 1px solid grey;
+    height: 70px;
+    display: grid;
+    grid-template-columns: 3fr 2fr 4fr;
+}
+.booking-details{
+    position: relative;
+    margin-top: 10px;
+
+    .service-name{
+        padding: 5px;
+    }
+
+    .worker-name{
+        font-size: 12px;
+        color: grey;
+    }
+}
+
+.booking-date, .cancel-button{
+    position: relative;
+    margin-top: 20px;
+    font-size: 12px;
+    color: grey;
+
+    button{
+        width: 80px;
+        height: 30px;
+
+    }
+
+    
+}
 .past-bookings{
     margin-top: 50px;
     margin-bottom: 10px;
-    height: 450px;
     max-width: 1270px;
     background: #fff;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
-
+    border-radius: 5px;
 }
 
 .table-top{
     padding: 20px;
+
+    h2{
+        text-align: left;
+    }
 }
 
-.divider{
-    background: grey;
-    height: 2px;
-    
-}
-
-.past-booking-details{
-    height: 60px;
-    background: #fff;
-   
-}
-
-.past-booking-content{
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
-    width: 90%;
-    margin-left: 60px;
-    margin-right: 60px;
-    margin-top: 10px;
-  
-}
-
-.headings{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 10px;
-    padding-left: 25px;
-    padding-right: 15px;
-}
-
-.service-provider{
-    padding: 15px;
-}
-
-.worker-details{
-    padding: 15px;
-}
-.date{
-    padding: 15px;
-
-}
 
 @media only screen and (max-width:1000px){
     .top-container{
         display: grid;
         grid-template-columns: repeat(1, 1fr);
     }
+
+    .content-area{
+        width: 70%;
+    }
+
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import './Dashboard.scss';
 import NavBar from './Layouts/NavBar.js'
+import PastBookings from './PastBookingsTable.js';
 
 class Dashboard extends React.Component {
+
     render() {
         return (
             <div>
@@ -20,36 +22,59 @@ class Dashboard extends React.Component {
                             </div>
                             <div className="upcoming-bookings">
                                 <h2>Upcoming Bookings</h2>
+                                <div className="upcoming-bookings-list">
+                                    <ul>
+                                        <li>
+                                            <div className="booking-content">
+                                                <span className="booking-details">
+                                                    <div className="service-name">Service Name</div>
+                                                    <div className="worker-name">Worker Name</div>
+                                                </span>
+                                                <span className="booking-date">Date Booked</span>
+                                                <span className="cancel-button"><button>Cancel</button></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="booking-content">
+                                                <span className="booking-details">
+                                                    <div className="service-name">Service Name</div>
+                                                    <div className="worker-name">Worker Name</div>
+                                                </span>
+                                                <span className="booking-date">Date Booked</span>
+                                                <span className="cancel-button"><button>Cancel</button></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="booking-content">
+                                                <span className="booking-details">
+                                                    <div className="service-name">Service Name</div>
+                                                    <div className="worker-name">Worker Name</div>
+                                                </span>
+                                                <span className="booking-date">Date Booked</span>
+                                                <span className="cancel-button"><button>Cancel</button></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="booking-content">
+                                                <span className="booking-details">
+                                                    <div className="service-name">Service Name</div>
+                                                    <div className="worker-name">Worker Name</div>
+                                                </span>
+                                                <span className="booking-date">Date Booked</span>
+                                                <span className="cancel-button"><button>Cancel</button></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
                             </div>
                         </div>
 
                         <div className="past-bookings">
                             <div className="table-top">
                                 <h2>Past Bookings</h2>
-                                <div className="headings">
-                                    <span>Service Provider</span>
-                                    <span>Worker</span>
-                                    <span>Date Booked</span>
-                                </div>
                             </div>
-                            <div className="divider"></div>
-                            <div className="past-booking-details">
-                                <div className="past-booking-content">
-                                    <span className="service-provider">Service Provider Name</span>
-                                    <span className="worker-details">Worker Name</span>
-                                    <span className="date">Date</span>
-                                </div>
-                            </div>
-                            <div className="divider"></div>
-                            <div className="past-booking-details">
-                                <div className="past-booking-content"></div>
-                            </div>
-                            <div className="divider"></div>
-                            <div className="past-booking-details">
-                                <div className="past-booking-content"></div>
-                            </div>
-                            <div className="divider"></div>
-
+                            <PastBookings />
                         </div>
                     </section>
                 </div>
