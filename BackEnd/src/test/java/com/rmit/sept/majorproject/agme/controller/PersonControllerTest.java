@@ -87,7 +87,7 @@ class PersonControllerTest {
 //				" \"password\":\"1234\"" +
 //				" \"accountType\":\"c\"" +
 //				"}";
-		Person bob = new Person((long) 1, "Bob", "bob123", "1234", 'c');
+		Person bob = new Person((long) 1, "Bob", "bob123", "1234", "c");
 		String jsonRequest = om.writeValueAsString(bob);
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/person/")
@@ -101,8 +101,8 @@ class PersonControllerTest {
 
 	@Test
 	void updatePersonTest() throws Exception {
-		Person bob = new Person((long) 1, "Bob", "bob123", "1234", 'c');
-		Person updatedBob = new Person((long) 1, "BobUpdated", "bob123", "1234", 'c');
+		Person bob = new Person((long) 1, "Bob", "bob123", "1234", "c");
+		Person updatedBob = new Person((long) 1, "BobUpdated", "bob123", "1234", "c");
 		String jsonRequest = om.writeValueAsString(bob);
 
 		when(personService.updatePerson(bob.getId(), updatedBob)).thenReturn(true);
@@ -115,7 +115,7 @@ class PersonControllerTest {
 
 	@Test
 	void updatePersonPasswordTest() throws Exception {
-		Person bob = new Person((long) 1, "Bob", "bob123", "1234", 'c');
+		Person bob = new Person((long) 1, "Bob", "bob123", "1234", "c");
 		String newPassword = "12345";
 		when(personService.updatePersonPassword(bob.getId(), newPassword)).thenReturn(true);
 
@@ -127,7 +127,7 @@ class PersonControllerTest {
 
 	@Test
 	void getPersonAccountTypeTest() throws Exception {
-		Person bob = new Person((long) 1, "Bob", "bob123", "1234", 'c');
+		Person bob = new Person((long) 1, "Bob", "bob123", "1234", "c");
 
 		when(personService.getPersonAccountTypeById(bob.getId())).thenReturn(bob.getAccountType());
 

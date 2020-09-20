@@ -63,8 +63,8 @@ public class PersonController {
 
     @GetMapping("account-type/{personId}")
     public ResponseEntity<?> getPersonAccountType(@PathVariable("personId") Long id) {
-        char accountType = personService.getPersonAccountTypeById(id);
-        return accountType != 'n' ?
+        String accountType = personService.getPersonAccountTypeById(id);
+        return accountType != null ?
                 new ResponseEntity<>(accountType, HttpStatus.ACCEPTED) : new ResponseEntity<>(accountType, HttpStatus.BAD_REQUEST);
     }
 

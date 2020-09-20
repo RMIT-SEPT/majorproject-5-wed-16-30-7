@@ -36,12 +36,12 @@ public class PersonService {
             .getPassword()
             .equals(password);
 
-    public char getPersonAccountTypeById(Long id) {
+    public String getPersonAccountTypeById(Long id) {
         if(personIdExist(id)) {
             return getPersonById(id).getAccountType();
         }
         else {
-            return 'n';
+            return null;
         }
     }
 

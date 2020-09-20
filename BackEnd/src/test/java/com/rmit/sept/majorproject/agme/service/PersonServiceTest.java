@@ -30,8 +30,8 @@ class PersonServiceTest {
 	void getAllPersonsTest() {
 		when(personRepository.findAll()).thenReturn(
 				Stream.of(
-						new Person((long) 1, "Bob", "bob123", "1234", 'c'),
-						new Person((long) 2, "Adam", "adam123", "pass123", 'c')
+						new Person((long) 1, "Bob", "bob123", "1234", "c"),
+						new Person((long) 2, "Adam", "adam123", "pass123", "c")
 
 				).collect(Collectors.toList())
 		);
@@ -42,8 +42,8 @@ class PersonServiceTest {
 	void loginTest() {
 		when(personRepository.findAll()).thenReturn(
 				Stream.of(
-						new Person((long) 1, "Bob", "bob123", "1234", 'c'),
-						new Person((long) 2, "Adam", "adam123", "pass123", 'c')
+						new Person((long) 1, "Bob", "bob123", "1234", "c"),
+						new Person((long) 2, "Adam", "adam123", "pass123", "c")
 
 				).collect(Collectors.toList())
 		);
@@ -57,8 +57,8 @@ class PersonServiceTest {
 	void getPersonAccountTypeByIdTest() {
 		when(personRepository.findAll()).thenReturn(
 				Stream.of(
-						new Person((long) 1, "Bob", "bob123", "1234", 'c'),
-						new Person((long) 2, "Adam", "adam123", "pass123", 'a')
+						new Person((long) 1, "Bob", "bob123", "1234", "c"),
+						new Person((long) 2, "Adam", "adam123", "pass123", "a")
 
 				).collect(Collectors.toList())
 		);
@@ -68,15 +68,15 @@ class PersonServiceTest {
 
 	@Test
 	void addPersonTest() {
-		Person bob = new Person((long) 1, "Bob", "bob123", "1234", 'c');
+		Person bob = new Person((long) 1, "Bob", "bob123", "1234", "c");
 		when(personRepository.save(bob)).thenReturn(bob);
 		assertTrue(personService.addPerson(bob));
 	}
 
 	@Test
 	void getPersonByIdTest() {
-		Person bob = new Person((long) 1, "Bob", "bob123", "1234", 'c');
-		Person adam = new Person((long) 2, "Adam", "adam123", "pass123", 'a');
+		Person bob = new Person((long) 1, "Bob", "bob123", "1234", "c");
+		Person adam = new Person((long) 2, "Adam", "adam123", "pass123", "a");
 		when(personRepository.findAll()).thenReturn(
 				Stream.of(bob,adam).collect(Collectors.toList())
 		);
@@ -86,8 +86,8 @@ class PersonServiceTest {
 
 	@Test
 	void getPersonByUsernameTest() {
-		Person bob = new Person((long) 1, "Bob", "bob123", "1234", 'c');
-		Person adam = new Person((long) 2, "Adam", "adam123", "pass123", 'a');
+		Person bob = new Person((long) 1, "Bob", "bob123", "1234", "c");
+		Person adam = new Person((long) 2, "Adam", "adam123", "pass123", "a");
 		when(personRepository.findAll()).thenReturn(
 				Stream.of(bob, adam).collect(Collectors.toList())
 		);
@@ -97,8 +97,8 @@ class PersonServiceTest {
 
 	@Test
 	void personIdExistTest() {
-		Person bob = new Person((long) 1, "Bob", "bob123", "1234", 'c');
-		Person adam = new Person((long) 2, "Adam", "adam123", "pass123", 'a');
+		Person bob = new Person((long) 1, "Bob", "bob123", "1234", "c");
+		Person adam = new Person((long) 2, "Adam", "adam123", "pass123", "a");
 		when(personRepository.findAll()).thenReturn(
 				Stream.of(bob, adam).collect(Collectors.toList())
 		);
@@ -109,7 +109,7 @@ class PersonServiceTest {
 
 	@Test
 	void updatePersonTest() {
-		Person bob_updated = new Person((long) 1, "Bob2", "bob234", "pass123", 'c');
+		Person bob_updated = new Person((long) 1, "Bob2", "bob234", "pass123", "c");
 		when(personRepository.findAll()).thenReturn(
 				Stream.of(bob_updated).collect(Collectors.toList())
 		);
@@ -120,7 +120,7 @@ class PersonServiceTest {
 
 	@Test
 	void updatePersonPasswordTest() {
-		Person bob_updated = new Person((long) 1, "Bob", "bob123", "pass123", 'c');
+		Person bob_updated = new Person((long) 1, "Bob", "bob123", "pass123", "c");
 		when(personRepository.findAll()).thenReturn(
 				Stream.of(bob_updated).collect(Collectors.toList())
 		);
@@ -131,7 +131,7 @@ class PersonServiceTest {
 
 	@Test
 	void deletePersonByIdTest() {
-		Person bob= new Person((long) 1, "Bob", "bob123", "pass123", 'c');
+		Person bob= new Person((long) 1, "Bob", "bob123", "pass123", "c");
 		when(personRepository.findAll()).thenReturn(
 				Stream.of(bob).collect(Collectors.toList())
 		);
