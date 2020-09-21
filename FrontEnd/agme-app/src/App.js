@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import "./Components/FontAwesomeIcons/FontAwesomeIcons"
+import "./Components/FontAwesomeIcons/FontAwesomeIcons";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginForm from './Components/LoginForm';
-import Dashboard from './Components/Dashboard';
+import Dashboard from './Components/CustomerDashboard/Dashboard';
 
 function App() {
   return (
