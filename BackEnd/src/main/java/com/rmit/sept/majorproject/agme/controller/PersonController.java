@@ -30,14 +30,15 @@ public class PersonController {
                 new ResponseEntity<>(HttpStatus.ACCEPTED) : new ResponseEntity<>("Wrong password, username given: " + username + ", password given: " + password, HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("")
-    public ResponseEntity<?> createNewPerson(@Valid @RequestBody Person person, BindingResult result) {
+    @PostMapping("register")
+    public ResponseEntity<?> Register(@Valid @RequestBody Person person, BindingResult result) {
         if (result.hasErrors()){
             return new ResponseEntity<String>("Invalid Person Object", HttpStatus.BAD_REQUEST);
         }
         return personService.addPerson(person) ?
-                new ResponseEntity<Person>(person, HttpStatus.CREATED) : new ResponseEntity<Person>(person, HttpStatus.BAD_REQUEST);
+                new ResponseEntity<Person>(person, HttpStatus.CREATED) : new ResponseEntity<String>("Failed to create person", HttpStatus.BAD_REQUEST);
     }
+
 
     // general update
     @PostMapping("update/{personId}")
@@ -62,8 +63,8 @@ public class PersonController {
 
     @GetMapping("account-type/{personId}")
     public ResponseEntity<?> getPersonAccountType(@PathVariable("personId") Long id) {
-        char accountType = personService.getPersonAccountTypeById(id);
-        return accountType != 'n' ?
+        String accountType = personService.getPersonAccountTypeById(id);
+        return accountType != null ?
                 new ResponseEntity<>(accountType, HttpStatus.ACCEPTED) : new ResponseEntity<>(accountType, HttpStatus.BAD_REQUEST);
     }
 

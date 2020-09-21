@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
+@Table(name = "person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,7 @@ public class Person {
 
     @NotBlank
     // a = admin, c = customer, e = employee
-    private char accountType;
+    private String accountType;
 
 //  can comment these out when testing, pretty extra
     private String address;
@@ -35,12 +36,20 @@ public class Person {
 
     }
 
+    public Person(Long id, @NotBlank String name, @NotBlank String username, @NotBlank String password, @NotBlank String accountType) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.accountType = accountType;
+    }
+
     // getters and setters
-    public char getAccountType() {
+    public String getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(char accountType) {
+    public void setAccountType(String accountType) {
         this.accountType = accountType;
     }
 

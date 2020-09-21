@@ -25,7 +25,10 @@ public class PersonService {
 
 
     public boolean Login(String username, String password) {
-        return verifyPassword.test(username, password);
+        if (personUsernameExist(username)) {
+            return verifyPassword.test(username, password);
+        }
+        return false;
     }
 
     public static BiPredicate<String,String> verifyPassword = (username, password) ->
@@ -33,17 +36,17 @@ public class PersonService {
             .getPassword()
             .equals(password);
 
-    public char getPersonAccountTypeById(Long id) {
+    public String getPersonAccountTypeById(Long id) {
         if(personIdExist(id)) {
             return getPersonById(id).getAccountType();
         }
         else {
-            return 'n';
+            return null;
         }
     }
 
     public boolean addPerson(Person person) {
-        if (personIdExist(person.getId())) {
+        if (personIdExist(person.getId()) || personUsernameExist(person.getUsername())) {
             return false;
         }
         personRepository.save(person);
@@ -72,6 +75,12 @@ public class PersonService {
                 .anyMatch(person -> person.getId().equals(id));
     }
 
+    public boolean personUsernameExist(String username) {
+        return getAllPersons()
+                .stream()
+                .anyMatch(person -> person.getUsername().equals(username));
+    }
+
     public boolean updatePerson(Long id, Person person) {
         if (personIdExist(id)) {
             person.setId(id);
@@ -93,7 +102,9 @@ public class PersonService {
 
 
     public void deletePersonById(Long id) {
-        personRepository.deleteById(id);
+        if (personIdExist(id)) {
+            personRepository.deleteById(id);
+        }
     }
 
 }
