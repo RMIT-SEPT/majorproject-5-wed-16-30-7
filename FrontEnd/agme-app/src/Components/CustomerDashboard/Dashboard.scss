@@ -1,0 +1,239 @@
+.Header{
+    background: #fff;
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    text-transform: uppercase;
+    color: #3b4141;
+    h1{
+        text-align: left;
+        width: fit-content;
+        padding-top: 20px;
+        padding-left: 80px;
+    }
+}
+
+.content-area{
+    margin-top: 60px;
+    padding: 70px;
+    float: right;
+    width: 80%;
+    transition: 0.5s;
+}
+
+.navigation:hover + .content-area{
+    width: 75%;
+    transition: 0.5s;
+}
+.top-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+    padding: 5px;
+    max-width: 100%;
+}
+
+.todays-bookings{
+    height: 350px;
+    width: 700px;
+    background: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+
+    .grid-wrapper{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    h2{
+        padding: 20px;
+        text-align: left;
+        color: #3b4141;
+        font-size: larger;
+        text-transform: uppercase;
+    }
+}
+
+
+.today-booking-details{
+    // border:1px solid grey;
+    // width: 60%;
+
+    .details-wrapper{
+        // border:1px solid grey;
+        width: 50%;
+        padding: 10px;
+        margin-left:70px;
+    }
+    .icon-wrapper{
+        text-align: left;
+        padding: 3px;
+
+        .service-name{  
+            font-size: larger;
+            font-weight: bolder; 
+        }
+        .employee-name{
+            font-size: small;  
+            padding-left: 10px;
+        }
+
+        .appointment-time{
+            font-size: small;
+            padding-left: 10px;
+            color: grey;
+        }
+    }
+}
+.booking-service-image{
+    img{
+        max-width: 70%;
+        padding-top: 5px;
+    }
+}
+
+.display-time{
+    padding: 40px;
+
+    h1{
+        padding-left: 20px;
+        text-align: left;
+        color: #aeb3b3;
+        font-size: larger;
+        text-transform: uppercase;
+        font-size: larger;
+    }
+    h2{
+        font-size: 30px;
+    }
+}
+
+.upcoming-bookings{
+    width: 500px;
+    background: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    
+    h2{
+        padding: 20px;
+        text-align: left;
+        color: #3b4141;
+        font-size: larger;
+        text-transform: uppercase;
+    }
+}
+
+.upcoming-bookings-list{
+
+    li{
+        list-style: none;
+    }
+    
+}
+
+.booking-content{
+    border-top: 1px solid rgb(219, 215, 215);
+    height: 70px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 4fr;
+
+    .vertical-bar{
+        margin-top: 10px;
+        margin-left: 20px;
+        height: 50px;
+        width: 5px;
+        border-radius: 2px;
+        // background: #E0404C;
+    }
+}
+.booking-details{
+    position: relative;
+    margin-top: 10px;
+
+    .service-name{
+        padding: 5px;
+    }
+
+    .worker-name{
+        font-size: 12px;
+        color: grey;
+    }
+}
+
+.booking-date, .cancel-button{
+    position: relative;
+    margin-top: 20px;
+    font-size: 12px;
+    color: grey;
+
+    button{
+        width: 80px;
+        height: 30px;
+        background-color: #eb5050;
+        border: none;
+        border-radius: 5px;
+        
+        p{
+            color: #fff;
+        }
+    }  
+    
+    button:hover{
+        width: 83px;
+        height: 33px;
+        cursor: pointer;
+        background-color: #db2c2c;
+
+        p{
+            color: #fff;
+            font-weight: bolder;
+        }
+    }
+}
+
+.booking-date{
+    margin-top: 35px;
+}
+
+.past-bookings{
+    margin-top: 50px;
+    margin-bottom: 10px;
+    max-width: 1270px;
+    background: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+.table-top{
+    padding: 20px;
+
+    h2{
+        text-align: left;
+        color: #3b4141;
+        font-size: larger;
+        text-transform: uppercase;
+    }
+}
+
+
+@media only screen and (max-width:1000px){
+    .top-container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .navigation:hover + .content-area{
+        width: 60%;
+    }
+    
+    .todays-bookings{
+        width:100%;
+    }
+
+    .upcoming-bookings{
+        width: 100%;
+    }
+
+}
