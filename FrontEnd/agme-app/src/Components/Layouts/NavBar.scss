@@ -25,6 +25,15 @@
                 display: flex;
                 
             }
+
+            a{
+                text-decoration: none;
+                color: rgb(43, 40, 40);
+            }
+
+            a.current-link{
+                color: rgb(41, 104, 175);
+            }
         }
 
         li:hover{
@@ -66,9 +75,11 @@
 }
 
 
+
+
 @media only screen and (max-width:1000px){
 
     .navigation:hover{
-        width: 30%;
+        width: 20%;
     }
 }

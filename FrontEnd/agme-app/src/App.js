@@ -5,14 +5,19 @@ import "./Components/FontAwesomeIcons/FontAwesomeIcons";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginForm from './Components/LoginForm';
 import Dashboard from './Components/CustomerDashboard/Dashboard';
+import Home from './Components/Home';
+import ProfilePage from './Components/ProfilePage.js';
 
 function App() {
   return (
     <Router>
       <div className="App">
+
         <Switch>
           <Route path="/login" component={LoginForm}></Route>
           <Route path="/dashboard" component={Dashboard}></Route>
+          <Route path="/profile" component={ProfilePage}></Route>
+          <Route path="/" component={Home}></Route>
         </Switch>
       </div>
     </Router>
