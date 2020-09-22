@@ -12,7 +12,7 @@ class UserService {
     }
 
     getCustomer() {
-        return axios.get(API_REGISTER);
+        return axios.get(API_BASE_URL);
     }
 
     /*
@@ -31,8 +31,8 @@ class UserService {
     */
 
     createCustomer(customer) {
-        const oldid = this.state.id;
-        this.state.id += 1;
+        // const oldid = this.state.id;
+        // this.state.id += 1;
         return axios.post(API_BASE_URL, customer);
 
     }
