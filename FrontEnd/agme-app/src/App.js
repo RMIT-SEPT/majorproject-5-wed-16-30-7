@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from './Services/history';
 import "./Components/FontAwesomeIcons/FontAwesomeIcons";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginForm from './Components/LoginForm';
@@ -11,7 +12,7 @@ import EditDetails from './Components/EditDetails.js';
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <div className="App">
 
         <Switch>
@@ -21,7 +22,7 @@ function App() {
           <Route path="/edit" component={EditDetails}></Route>
           <Route path="/" component={Home}></Route>
         </Switch>
-      </div>  
+      </div>
     </Router>
   );
 }

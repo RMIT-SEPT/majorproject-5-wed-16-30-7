@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = "http://localhost:8080/api/person/";
+const API_BASE_URL = "http://localhost:8080/api/person";
 
 class UserService {
 
@@ -31,10 +31,13 @@ class UserService {
     */
 
     createCustomer(customer) {
-        // const oldid = this.state.id;
-        // this.state.id += 1;
-        return axios.post(API_BASE_URL, customer);
+        return axios.post(API_BASE_URL + '/register', customer);
 
+    }
+
+    loginCustomer(username, password) {
+        const loginURL = API_BASE_URL + '/login/' + username;
+        return axios.post(loginURL, password, { headers: { 'Content-Type': 'text/plain' } });
     }
 
     editCustomer(customer, id) {

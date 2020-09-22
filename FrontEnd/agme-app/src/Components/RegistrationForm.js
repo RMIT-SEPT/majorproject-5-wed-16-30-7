@@ -1,6 +1,7 @@
 import React from 'react';
 import './LoginForm.scss';
 import UserService from '../Services/UserService';
+import history from '../Services/history';
 
 class RegistrationForm extends React.Component {
 
@@ -29,7 +30,8 @@ class RegistrationForm extends React.Component {
         this.getCustomerRegistration = this.getCustomerRegistration.bind(this);
     }
 
-
+    //Get customer details from input fields
+    //If details valid pass onto backend and create a customer
     getCustomerRegistration = (e) => {
         e.preventDefault();
 
@@ -55,10 +57,8 @@ class RegistrationForm extends React.Component {
             };
             console.log('customerLogin =>' + JSON.stringify(customer));
 
-            UserService.createCustomer(customer);
-            // UserService.createCustomer(customer).then(res => {
-            //     this.props.history.push('/dashboard');
-            // });
+            UserService.createCustomer(customer).then(history.push('./'));
+            //Else stay on register page
         } else {
             console.error('Invalid Form')
         }
