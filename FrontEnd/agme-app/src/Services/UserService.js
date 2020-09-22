@@ -1,16 +1,18 @@
 import axios from 'axios';
 
-const API_BASE_URL = "http://localhost:8080/api/person";
+const API_REGISTER = "http://localhost:8080/api/person/register";
 
 class UserService {
 
     getCustomer() {
-        return axios.get(API_BASE_URL);
+        return axios.get(API_REGISTER);
     }
 
     createCustomer(customer) {
-        return axios.post(API_BASE_URL, customer);
+        return axios.post(API_REGISTER, customer);
     }
+
+    
 }
 
 export default new UserService()
