@@ -8,6 +8,7 @@ class UpcomingBookings extends React.Component {
 
         this.state = {
             urgency: [{
+                id: 0,
                 high: "#E0404C"
             }],
 
