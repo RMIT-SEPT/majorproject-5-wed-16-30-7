@@ -1,10 +1,20 @@
 import React from 'react';
+import './BookingPage.scss';
+// import NavBar from './Layouts/NavBar.js'
+// import Header from './Layouts/Header.js';
 
 class BookingPage extends React.Component {
 
     render() {
         return (
-            <di><h2>Booking Page</h2></di>
+
+            <div >
+                <div className="booking-container">
+                    <div className="booking-form">
+                        <form></form>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
