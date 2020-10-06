@@ -1,0 +1,124 @@
+.booking-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.booking-form{
+    width: 900px;
+    height: 600px;
+    background: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.booking-left{
+    h2{
+        
+        color: #3b4141;
+        font-size: 40px;
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: 40%;
+        padding: 20px;
+    }
+
+    p{
+        padding-top: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+.service{
+    margin-top: 30%;
+    margin-left: 10%;
+    width: 60%;
+    padding: 20px;
+
+    h3{
+        text-align: left;
+        color: #3b4141;
+        text-transform: uppercase;
+    }
+}
+
+.provider{
+    margin-left: 10%;
+    width: 60%;
+    padding: 20px;
+
+    h3{
+        text-align: left;
+        color: #3b4141;
+        text-transform: uppercase;
+    }
+}
+
+.date-time{
+    margin-left: 10%;
+    padding: 20px;
+    width: 35%;
+    h3{
+        text-align: left;
+        color: #3b4141;
+        text-transform: uppercase;
+    }
+}
+
+.button-group{
+
+    margin-left: 20px;
+    margin-top: 25px;
+    span{
+        padding: 20px;
+    }
+}
+
+.cancel-button{
+    width: 80px;
+    height: 40px;
+    background-color: #eb5050;
+    border: none;
+    border-radius: 5px;
+
+    p{
+        color: #fff;
+        font-size: 15px;
+    }
+}
+
+.cancel-button:hover{
+    width: 83px;
+    height: 43px;
+    cursor: pointer;
+    background-color: #db2c2c;
+
+    
+}
+
+.submit-button{
+    width: 110px;
+    height: 40px;
+    background-color: #74c982;
+    border: none;
+    border-radius: 5px;
+
+    p{
+        color: #fff;
+        font-size: 15px;
+    }
+}
+
+.submit-button:hover{
+    width: 113px;
+    height: 43px;
+    cursor: pointer;
+    background-color: #3ec47a;
+
+    
+}
