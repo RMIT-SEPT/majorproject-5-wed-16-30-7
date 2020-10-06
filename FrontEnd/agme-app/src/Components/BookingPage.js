@@ -83,9 +83,10 @@ class BookingPage extends React.Component {
                                     <h3>Date/Time:</h3>
                                     <DatePicker
                                         selected={selectedDate}
+                                        minDate={new Date()}
                                         onChange={this.handleDateChange}
                                         showTimeSelect
-                                        placeholderText="Select a day"
+                                        placeholderText="Select a day and time"
                                         dateFormat='MMMM d, yyyy h:mm aa'
                                         isValidDate={true}
                                     />
