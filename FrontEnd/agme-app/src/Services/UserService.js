@@ -31,7 +31,7 @@ class UserService {
     */
 
     createCustomer(customer) {
-        return axios.post(API_BASE_URL + '/register', customer);
+        return axios.post(API_BASE_URL + '/register/', customer);
 
     }
 

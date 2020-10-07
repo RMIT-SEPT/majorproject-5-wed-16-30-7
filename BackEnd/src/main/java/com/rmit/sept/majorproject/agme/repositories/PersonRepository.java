@@ -15,4 +15,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Override
     List<Person> findAll();
 
+    Person findByUsername(String username);
+
+    Person getById(Long id);
+
 }
