@@ -24,7 +24,7 @@ public class PersonController {
     @PostMapping("login/{username}")
     public ResponseEntity<?> Login(@PathVariable("username") String username, @Valid @RequestBody String password, BindingResult result) {
         if (result.hasErrors()){
-            return new ResponseEntity<String>("Invalid password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid password", HttpStatus.BAD_REQUEST);
         }
         return personService.Login(username, password) ?
                 new ResponseEntity<>(HttpStatus.ACCEPTED) : new ResponseEntity<>("Wrong password, username given: " + username + ", password given: " + password, HttpStatus.BAD_REQUEST);
@@ -47,7 +47,7 @@ public class PersonController {
             return new ResponseEntity<String>("Invalid Person Object", HttpStatus.BAD_REQUEST);
         }
         return personService.updatePerson(id, person) ?
-                new ResponseEntity<Person>(person, HttpStatus.ACCEPTED) : new ResponseEntity<Person>(person, HttpStatus.BAD_REQUEST);
+                new ResponseEntity<>(person, HttpStatus.ACCEPTED) : new ResponseEntity<>(person, HttpStatus.BAD_REQUEST);
     }
 
     //specific updates, can add more following the same pattern
