@@ -1,6 +1,9 @@
 import React from 'react';
 import './LoginForm.scss';
 import RegistartionForm from './RegistrationForm.js'
+import UserService from '../Services/UserService';
+import history from '../Services/history';
+
 class LoginForm extends React.Component {
 
     constructor(props) {
@@ -8,13 +11,14 @@ class LoginForm extends React.Component {
         this.state = {
             username: '',
             password: '',
+            error: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.getCustomerLogin = this.getCustomerLogin.bind(this);
     }
 
-
+    //Change form style for register when register button is clicked
     register() {
         document.getElementById("login").style.left = "-400px";
         document.getElementById("register").style.left = "50px";
@@ -22,6 +26,7 @@ class LoginForm extends React.Component {
         document.getElementById("form-box").style.height = "700px";
     }
 
+    //Change form style for login when login button is clicked
     login() {
         document.getElementById("login").style.left = "50px";
         document.getElementById("register").style.left = "450px";
@@ -29,12 +34,31 @@ class LoginForm extends React.Component {
         document.getElementById("form-box").style.height = "450px";
     }
 
+    //Get customer username and password from input fields
+    //Pass input field values onto back end for validation
     getCustomerLogin = (e) => {
         e.preventDefault();
+
+        //Login out to console to check if correct values from input fields are captured
         let customer = { username: this.state.username, password: this.state.password };
         console.log('customerLogin =>' + JSON.stringify(customer));
+
+        //Login the user given correct pass and username
+        UserService.loginCustomer(this.state.username, this.state.password).then(res => {
+            //If login succesful redirect to dashboard
+            if (res.status === 202) {
+                console.log(this.state.error);
+                this.setState({ error: '' });
+                history.push('./dashboard');
+            }
+            //Else stay on login page
+        }).catch(() => {
+            this.setState({ error: '*Username or Password is invalid*' });
+        });
+
     }
 
+    //Capture user input values 
     handleChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
@@ -53,11 +77,12 @@ class LoginForm extends React.Component {
                         <button type="button" className="toggle-btn" onClick={this.login}>Login</button>
                         <button type="button" className="toggle-btn" onClick={this.register}>Register</button>
                     </div>
-                    <form id="login" className="input-group">
-                        <input type="text" className="input-field" placeholder="User Name" name='username' value={this.state.username} onChange={this.handleChange} required />
-                        <input type="password" className="input-field" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} required />
+                    <form id="login" className="input-group" onSubmit={this.getCustomerLogin}>
+                        <span className='error'>{this.state.error}</span>
+                        <input type="text" id="username" className="input-field" placeholder="User Name" name='username' value={this.state.username} onChange={this.handleChange} required />
+                        <input type="password" id="password" className="input-field" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} required />
                         <input type="checkbox" className="check-box" /><span id="rememberMe">Remember Me</span>
-                        <button type="submit" className="submit-btn" onClick={this.getCustomerLogin}>Login</button>
+                        <button type="submit" className="submit-btn" >Login</button>
                     </form>
                     <RegistartionForm />
                 </div>
