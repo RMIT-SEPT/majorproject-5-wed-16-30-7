@@ -23,6 +23,8 @@ public class BookingController {
 		this.bookingService = bookingService;
 	}
 
+	//TODO: create a booking function
+
 	// get ongoing bookings of a specific user
 	@GetMapping("ongoing-bookings/{personId}")
 	public Iterable<Booking> getPersonalOngoingBookings(@PathVariable("personId") Long person_id) {

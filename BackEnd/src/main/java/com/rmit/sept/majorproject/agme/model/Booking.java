@@ -7,6 +7,9 @@ import java.util.Date;
 @Entity
 @Table(name = "booking")
 public class Booking {
+
+	//TODO: inlude service id and provider id
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long booking_id;
