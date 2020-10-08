@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/person")
+@RequestMapping("/api/provider")
 @CrossOrigin("*") // accepting post/get from any sources, change if needed
 public class PersonController {
 
@@ -21,14 +21,14 @@ public class PersonController {
         this.personService = personService;
     }
 
-    //TODO: return user id
+    // Also returns the user ID together with accepted status
     @PostMapping("login/{username}")
     public ResponseEntity<?> Login(@PathVariable("username") String username, @Valid @RequestBody String password, BindingResult result) {
         if (result.hasErrors()){
             return new ResponseEntity<>("Invalid password", HttpStatus.BAD_REQUEST);
         }
         return personService.Login(username, password) ?
-                new ResponseEntity<>(HttpStatus.ACCEPTED) : new ResponseEntity<>("Wrong password, username given: " + username + ", password given: " + password, HttpStatus.BAD_REQUEST);
+                new ResponseEntity<>(personService.getPersonIdByUsername(username), HttpStatus.ACCEPTED) : new ResponseEntity<>("Wrong password, username given: " + username + ", password given: " + password, HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("register")
@@ -66,7 +66,7 @@ public class PersonController {
     public ResponseEntity<?> getPersonAccountType(@PathVariable("personId") Long id) {
         String accountType = personService.getPersonAccountTypeById(id);
         return accountType != null ?
-                new ResponseEntity<>(accountType, HttpStatus.ACCEPTED) : new ResponseEntity<>(accountType, HttpStatus.BAD_REQUEST);
+                new ResponseEntity<>(accountType, HttpStatus.ACCEPTED) : new ResponseEntity<>("Person ID does not exist", HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping

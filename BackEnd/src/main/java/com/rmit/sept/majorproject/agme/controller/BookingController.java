@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,21 @@ public class BookingController {
 		this.bookingService = bookingService;
 	}
 
-	//TODO: create a booking function
+	// creating a booking
+	@PostMapping("create-booking")
+	public ResponseEntity<?> createBooking(@Valid @RequestBody Booking booking, BindingResult result) {
+		if (result.hasErrors()){
+			return new ResponseEntity<String>("Invalid Booking Object", HttpStatus.BAD_REQUEST);
+		}
+		return bookingService.addBooking(booking) ?
+				new ResponseEntity<>(booking, HttpStatus.CREATED) : new ResponseEntity<String>("Failed to create booking", HttpStatus.BAD_REQUEST);
+	}
+
+	// get booked dates of a specific service
+	@GetMapping("booked-dates/{serviceId}")
+	public Iterable<Date> getBookedDatesOfService(@PathVariable("serviceId")  Long service_id) {
+		return bookingService.getOngoingBookingDatesOfService(service_id);
+	}
 
 	// get ongoing bookings of a specific user
 	@GetMapping("ongoing-bookings/{personId}")

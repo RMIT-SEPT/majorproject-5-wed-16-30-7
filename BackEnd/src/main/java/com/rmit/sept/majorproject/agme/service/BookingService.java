@@ -5,6 +5,7 @@ import com.rmit.sept.majorproject.agme.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,12 +23,30 @@ public class BookingService {
 		return bookingRepository.findAll();
 	}
 
+	public boolean addBooking(Booking booking) {
+		if (bookingIdExist(booking.getBooking_id())) {
+			return false;
+		}
+		bookingRepository.save(booking);
+		return true;
+	}
+
 	// get ongoing bookings for a specific user
 	public List<Booking> getOngoingBookings(Long user_id) {
 		return getAllBookings()
 				.stream()
 				.filter(booking -> booking.getUser_id().equals(user_id))
 				.filter(booking -> booking.getStatus().equals("ongoing"))
+				.collect(Collectors.toList());
+	}
+
+	// get ongoing bookings for a specific service
+	public List<Date> getOngoingBookingDatesOfService(Long service_id) {
+		return getAllBookings()
+				.stream()
+				.filter(booking -> booking.getUser_id().equals(service_id))
+				.filter(booking -> booking.getStatus().equals("ongoing"))
+				.map(Booking::getBooking_date)
 				.collect(Collectors.toList());
 	}
 

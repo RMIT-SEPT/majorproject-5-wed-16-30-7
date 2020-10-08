@@ -8,8 +8,6 @@ import java.util.Date;
 @Table(name = "booking")
 public class Booking {
 
-	//TODO: inlude service id and provider id
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long booking_id;
@@ -19,7 +17,13 @@ public class Booking {
 	private Long user_id;
 
 	@NotBlank
-	private String booking_name;
+	private Long service_id;
+
+	@NotBlank
+	private Long provider_id;
+
+//	@NotBlank
+//	private String booking_name;
 
 	// status: ongoing, completed, cancelled
 	@NotBlank
@@ -32,15 +36,33 @@ public class Booking {
 
 	}
 
-	public Booking(Long booking_id, @NotBlank Long user_id, @NotBlank String booking_name, @NotBlank String status, @NotBlank Date booking_date) {
+	public Booking(Long booking_id, @NotBlank Long user_id, @NotBlank Long service_id, @NotBlank Long provider_id/*, @NotBlank String booking_name*/, @NotBlank String status, @NotBlank Date booking_date) {
 		this.booking_id = booking_id;
 		this.user_id = user_id;
-		this.booking_name = booking_name;
+		this.service_id = service_id;
+		this.provider_id = provider_id;
+//		this.booking_name = booking_name;
 		this.status = status;
 		this.booking_date = booking_date;
 	}
 
 	// getters and setters
+	public Long getService_id() {
+		return service_id;
+	}
+
+	public void setService_id(Long service_id) {
+		this.service_id = service_id;
+	}
+
+	public Long getProvider_id() {
+		return provider_id;
+	}
+
+	public void setProvider_id(Long provider_id) {
+		this.provider_id = provider_id;
+	}
+
 	public Long getBooking_id() {
 		return booking_id;
 	}
@@ -57,13 +79,13 @@ public class Booking {
 		this.user_id = user_id;
 	}
 
-	public String getBooking_name() {
-		return booking_name;
-	}
-
-	public void setBooking_name(String booking_name) {
-		this.booking_name = booking_name;
-	}
+//	public String getBooking_name() {
+//		return booking_name;
+//	}
+//
+//	public void setBooking_name(String booking_name) {
+//		this.booking_name = booking_name;
+//	}
 
 	public String getStatus() {
 		return status;
