@@ -40,8 +40,10 @@ public class BookingControllerTest {
 	@Test
 	void getPersonalOngoingBookingsTest() throws Exception {
 		Long userId = (long) 1;
-		Booking booking1 = new Booking((long) 1, userId, "Booking 1", "ongoing", now());
-		Booking booking2 = new Booking((long) 2, userId, "Booking 2", "ongoing", now());
+		Long serviceId = (long) 1;
+		Long providerId = (long) 1;
+		Booking booking1 = new Booking((long) 1, userId, serviceId, providerId, "ongoing", now());
+		Booking booking2 = new Booking((long) 2, userId, serviceId, providerId,"ongoing", now());
 
 		when(bookingService.getOngoingBookings(userId)).thenReturn(
 				Stream.of(
@@ -56,8 +58,10 @@ public class BookingControllerTest {
 	@Test
 	void getPersonalBookingHistoryTest() throws Exception {
 		Long userId = (long) 1;
-		Booking booking1 = new Booking((long) 1, userId, "Booking 1", "completed", now());
-		Booking booking2 = new Booking((long) 2, userId, "Booking 2", "cancelled", now());
+		Long serviceId = (long) 1;
+		Long providerId = (long) 1;
+		Booking booking1 = new Booking((long) 1, userId, serviceId, providerId, "completed", now());
+		Booking booking2 = new Booking((long) 2, userId, serviceId, providerId, "cancelled", now());
 
 		when(bookingService.getBookingHistory(userId)).thenReturn(
 				Stream.of(
@@ -72,8 +76,10 @@ public class BookingControllerTest {
 	@Test
 	void getPersonalCompletedBookingHistoryTest() throws Exception {
 		Long userId = (long) 1;
-		Booking booking1 = new Booking((long) 1, userId, "Booking 1", "completed", now());
-		Booking booking2 = new Booking((long) 2, userId, "Booking 2", "completed", now());
+		Long serviceId = (long) 1;
+		Long providerId = (long) 1;
+		Booking booking1 = new Booking((long) 1, userId, serviceId, providerId, "completed", now());
+		Booking booking2 = new Booking((long) 2, userId, serviceId, providerId, "completed", now());
 
 		when(bookingService.getBookingHistory(userId)).thenReturn(
 				Stream.of(
@@ -87,8 +93,10 @@ public class BookingControllerTest {
 
 	@Test
 	void getBookingStatusTest() throws Exception {
-		Booking booking1 = new Booking((long) 1, (long) 1, "Booking 1", "completed", now());
-		Booking booking2 = new Booking((long) 2, (long) 2, "Booking 2", "ongoing", now());
+		Long serviceId = (long) 1;
+		Long providerId = (long) 1;
+		Booking booking1 = new Booking((long) 1, (long) 1, serviceId, providerId, "completed", now());
+		Booking booking2 = new Booking((long) 2, (long) 2, serviceId, providerId, "ongoing", now());
 
 		when(bookingService.getBookingStatus(booking1.getBooking_id())).thenReturn(booking1.getStatus());
 		when(bookingService.getBookingStatus(booking2.getBooking_id())).thenReturn(booking2.getStatus());
@@ -104,7 +112,9 @@ public class BookingControllerTest {
 
 	@Test
 	void updateBookingStatusTest() throws Exception {
-		Booking booking1 = new Booking((long) 1, (long) 1, "Booking 1", "ongoing", now());
+		Long serviceId = (long) 1;
+		Long providerId = (long) 1;
+		Booking booking1 = new Booking((long) 1, (long) 1, serviceId, providerId, "ongoing", now());
 		String newStatus = "cancelled";
 
 		when(bookingService.setBookingStatus(booking1.getBooking_id(), newStatus)).thenReturn(true);

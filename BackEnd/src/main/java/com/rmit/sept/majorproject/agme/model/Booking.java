@@ -36,7 +36,7 @@ public class Booking {
 
 	}
 
-	public Booking(Long booking_id, @NotBlank Long user_id, @NotBlank Long service_id, @NotBlank Long provider_id/*, @NotBlank String booking_name*/, @NotBlank String status, @NotBlank Date booking_date) {
+	public Booking(Long booking_id, @NotBlank Long user_id, @NotBlank Long service_id, @NotBlank Long provider_id, @NotBlank String status, @NotBlank Date booking_date) {
 		this.booking_id = booking_id;
 		this.user_id = user_id;
 		this.service_id = service_id;

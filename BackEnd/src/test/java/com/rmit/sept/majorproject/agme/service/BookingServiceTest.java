@@ -30,8 +30,8 @@ public class BookingServiceTest {
 	public void getAllBookingsTest() {
 		when(bookingRepository.findAll()).thenReturn(
 				Stream.of(
-						new Booking((long) 1, (long) 1, "Booking 1", "ongoing", now()),
-						new Booking((long) 2, (long) 1, "Booking 2", "ongoing", now())
+						new Booking((long) 1, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 2, (long) 1, (long) 1,(long) 1, "ongoing", now())
 				).collect(Collectors.toList())
 		);
 		assertEquals(2, bookingService.getAllBookings().size());
@@ -41,10 +41,10 @@ public class BookingServiceTest {
 	public void getOngoingBookingsTest() {
 		when(bookingRepository.findAll()).thenReturn(
 				Stream.of(
-						new Booking((long) 1, (long) 1, "Booking 1", "ongoing", now()),
-						new Booking((long) 2, (long) 1, "Booking 2", "completed", now()),
-						new Booking((long) 3, (long) 1, "Booking 3", "ongoing", now()),
-						new Booking((long) 4, (long) 1, "Booking 4", "cancelled", now())
+						new Booking((long) 1, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 2, (long) 1, (long) 1,(long) 1, "completed", now()),
+						new Booking((long) 3, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 4, (long) 1, (long) 1,(long) 1, "cancelled", now())
 				).collect(Collectors.toList())
 		);
 		// 2 ongoing bookings
@@ -55,10 +55,10 @@ public class BookingServiceTest {
 	public void getBookingHistoryTest() {
 		when(bookingRepository.findAll()).thenReturn(
 				Stream.of(
-						new Booking((long) 1, (long) 1, "Booking 1", "ongoing", now()),
-						new Booking((long) 2, (long) 1, "Booking 2", "completed", now()),
-						new Booking((long) 3, (long) 1, "Booking 3", "ongoing", now()),
-						new Booking((long) 4, (long) 1, "Booking 4", "cancelled", now())
+						new Booking((long) 1, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 2, (long) 1, (long) 1,(long) 1, "completed", now()),
+						new Booking((long) 3, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 4, (long) 1, (long) 1,(long) 1, "cancelled", now())
 				).collect(Collectors.toList())
 		);
 		// 1 completed booking + 1 cancelled booking
@@ -69,10 +69,10 @@ public class BookingServiceTest {
 	public void getCompletedBookingHistoryTest() {
 		when(bookingRepository.findAll()).thenReturn(
 				Stream.of(
-						new Booking((long) 1, (long) 1, "Booking 1", "ongoing", now()),
-						new Booking((long) 2, (long) 1, "Booking 2", "completed", now()),
-						new Booking((long) 3, (long) 1, "Booking 3", "ongoing", now()),
-						new Booking((long) 4, (long) 1, "Booking 4", "cancelled", now())
+						new Booking((long) 1, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 2, (long) 1, (long) 1,(long) 1, "completed", now()),
+						new Booking((long) 3, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 4, (long) 1, (long) 1,(long) 1, "cancelled", now())
 				).collect(Collectors.toList())
 		);
 		// 1 completed booking
@@ -83,10 +83,10 @@ public class BookingServiceTest {
 	public void setBookingStatusTest() {
 		when(bookingRepository.findAll()).thenReturn(
 				Stream.of(
-						new Booking((long) 1, (long) 1, "Booking 1", "ongoing", now()),
-						new Booking((long) 2, (long) 1, "Booking 2", "completed", now()),
-						new Booking((long) 3, (long) 1, "Booking 3", "ongoing", now()),
-						new Booking((long) 4, (long) 1, "Booking 4", "cancelled", now())
+						new Booking((long) 1, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 2, (long) 1, (long) 1,(long) 1, "completed", now()),
+						new Booking((long) 3, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 4, (long) 1, (long) 1,(long) 1,"cancelled", now())
 				).collect(Collectors.toList())
 		);
 		// try changing a valid booking id's status
@@ -101,10 +101,10 @@ public class BookingServiceTest {
 	public void getBookingStatusTest() {
 		when(bookingRepository.findAll()).thenReturn(
 				Stream.of(
-						new Booking((long) 1, (long) 1, "Booking 1", "ongoing", now()),
-						new Booking((long) 2, (long) 1, "Booking 2", "completed", now()),
-						new Booking((long) 3, (long) 1, "Booking 3", "ongoing", now()),
-						new Booking((long) 4, (long) 1, "Booking 4", "cancelled", now())
+						new Booking((long) 1, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 2, (long) 1, (long) 1,(long) 1, "completed", now()),
+						new Booking((long) 3, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 4, (long) 1, (long) 1,(long) 1, "cancelled", now())
 				).collect(Collectors.toList())
 		);
 		// try getting a valid booking id's status
@@ -119,10 +119,10 @@ public class BookingServiceTest {
 	public void bookingIdExistTest() {
 		when(bookingRepository.findAll()).thenReturn(
 				Stream.of(
-						new Booking((long) 1, (long) 1, "Booking 1", "ongoing", now()),
-						new Booking((long) 2, (long) 1, "Booking 2", "completed", now()),
-						new Booking((long) 3, (long) 1, "Booking 3", "ongoing", now()),
-						new Booking((long) 4, (long) 1, "Booking 4", "cancelled", now())
+						new Booking((long) 1, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 2, (long) 1, (long) 1,(long) 1, "completed", now()),
+						new Booking((long) 3, (long) 1, (long) 1,(long) 1, "ongoing", now()),
+						new Booking((long) 4, (long) 1, (long) 1,(long) 1, "cancelled", now())
 				).collect(Collectors.toList())
 		);
 		// try getting a valid booking id
@@ -137,8 +137,8 @@ public class BookingServiceTest {
 
 	@Test
 	public void getBookingByIdTest() {
-		Booking booking1 = new Booking((long) 1, (long) 1, "Booking 1", "ongoing", now());
-		Booking booking2 = new Booking((long) 2, (long) 1, "Booking 2", "completed", now());
+		Booking booking1 = new Booking((long) 1, (long) 1, (long) 1,(long) 1, "ongoing", now());
+		Booking booking2 = new Booking((long) 2, (long) 1, (long) 1,(long) 1, "completed", now());
 		when(bookingRepository.findAll()).thenReturn(
 				Stream.of(
 						booking1,
