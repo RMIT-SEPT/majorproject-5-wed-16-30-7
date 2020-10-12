@@ -17,6 +17,10 @@ public class Services {
 	@NotBlank
 	private String service_name;
 
+	public Services() {
+
+	}
+
 	public Services(Long service_id, @NotBlank Long provider_id, @NotBlank String service_name) {
 		this.service_id = service_id;
 		this.provider_id = provider_id;

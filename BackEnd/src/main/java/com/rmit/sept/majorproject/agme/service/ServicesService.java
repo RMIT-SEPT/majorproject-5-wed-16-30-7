@@ -21,9 +21,10 @@ public class ServicesService {
 		return servicesRepository.findAll();
 	}
 
-	public static List<Services> getServicesDistinct() {
+	public static List<String> getServicesDistinct() {
 		return getAllServices()
 				.stream()
+				.map(Services::getService_name)
 				.distinct()
 				.collect(Collectors.toList());
 	}
