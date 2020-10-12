@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-<<<<<<< HEAD
-@RequestMapping("/api/personr")
-=======
+
 @RequestMapping("/api/person")
->>>>>>> 5c8fd9b24563a0e07a7dba0c70a63dc11a37eb8a
+
 @CrossOrigin("*") // accepting post/get from any sources, change if needed
 public class PersonController {
 
