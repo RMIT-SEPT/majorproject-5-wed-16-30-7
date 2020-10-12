@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/person")
+@RequestMapping("/api/provider")
 @CrossOrigin("*") // accepting post/get from any sources, change if needed
 public class ProviderController {
 	private ProviderService providerService;
