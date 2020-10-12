@@ -29,23 +29,27 @@ class UserService {
        return persons[id - 1]
     }
     */
-
+    //Register a customer
     createCustomer(customer) {
         return axios.post(API_BASE_URL + '/register', customer);
 
     }
 
+    //Login any user
     loginCustomer(username, password) {
         const loginURL = API_BASE_URL + '/login/' + username;
         return axios.post(loginURL, password, { headers: { 'Content-Type': 'text/plain' } });
     }
 
+    //Edit customer details
     editCustomer(customer, id) {
         const editURL = "http://localhost:8080/api/person/update/" + id;
         return axios.post(editURL, customer);
 
     }
 
+
+    
 
 }
 
