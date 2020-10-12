@@ -8,22 +8,26 @@ import javax.validation.constraints.NotBlank;
 public class Provider {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long prodiver_id;
+	private Long provider_id;
 
 	@NotBlank
 	private String provider_name;
 
-	public Provider(Long prodiver_id, String provider_name) {
-		this.prodiver_id = prodiver_id;
+	public Provider() {
+
+	}
+
+	public Provider(Long provider_id, String provider_name) {
+		this.provider_id = provider_id;
 		this.provider_name = provider_name;
 	}
 
-	public Long getProdiver_id() {
-		return prodiver_id;
+	public Long getProvider_id() {
+		return provider_id;
 	}
 
-	public void setProdiver_id(Long prodiver_id) {
-		this.prodiver_id = prodiver_id;
+	public void setProvider_id(Long prodiver_id) {
+		this.provider_id = prodiver_id;
 	}
 
 	public String getProvider_name() {

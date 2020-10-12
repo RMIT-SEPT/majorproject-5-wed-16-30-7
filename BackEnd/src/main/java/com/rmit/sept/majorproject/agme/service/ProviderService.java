@@ -21,7 +21,7 @@ public class ProviderService {
 	}
 
 	public boolean addProvider(Provider provider) {
-		if (providerIdExist(provider.getProdiver_id())) {
+		if (providerIdExist(provider.getProvider_id())) {
 			return false;
 		}
 		providerRepository.save(provider);
@@ -34,7 +34,7 @@ public class ProviderService {
 		}
 		return getAllProviders()
 				.stream()
-				.filter(provider -> provider.getProdiver_id().equals((provider_id)))
+				.filter(provider -> provider.getProvider_id().equals((provider_id)))
 				.findFirst()
 				.orElseThrow(() -> new IllegalStateException(String.format("Provider ID %s not found", provider_id)))
 				.getProvider_name();
@@ -44,6 +44,6 @@ public class ProviderService {
 	public boolean providerIdExist(Long provider_id) {
 		return getAllProviders()
 				.stream()
-				.anyMatch(provider -> provider.getProdiver_id().equals(provider_id));
+				.anyMatch(provider -> provider.getProvider_id().equals(provider_id));
 	}
 }
