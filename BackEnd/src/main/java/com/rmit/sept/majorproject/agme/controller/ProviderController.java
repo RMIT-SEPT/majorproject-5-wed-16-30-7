@@ -27,11 +27,11 @@ public class ProviderController {
 	}
 
 	// might need this function when you choose a service then list the providers of a service
-	@GetMapping("get-provider-name-by-id/{providerId}")
+	@GetMapping("get-provider-by-id/{providerId}")
 	public ResponseEntity<?> getProviderNameById(@PathVariable("providerId") Long provider_id) {
-		String providerName = providerService.getProviderName(provider_id);
-		return providerName != null ?
-				new ResponseEntity<>(providerName, HttpStatus.OK) : new ResponseEntity<>("Provider ID does not exist", HttpStatus.BAD_REQUEST);
+		Provider provider = providerService.getProvider(provider_id);
+		return provider != null ?
+				new ResponseEntity<>(provider, HttpStatus.OK) : new ResponseEntity<>("Provider ID does not exist", HttpStatus.BAD_REQUEST);
 	}
 
 	@PostMapping("add-provider")

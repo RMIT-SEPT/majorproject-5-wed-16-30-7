@@ -28,6 +28,18 @@ public class ProviderService {
 		return true;
 	}
 
+	public Provider getProvider(Long provider_id) {
+		if (!providerIdExist(provider_id)) {
+			return null;
+		}
+		return getAllProviders()
+				.stream()
+				.filter(provider -> provider.getProvider_id().equals((provider_id)))
+				.findFirst()
+				.orElseThrow(() -> new IllegalStateException(String.format("Provider ID %s not found", provider_id)));
+
+	}
+
 	public String getProviderName(Long provider_id) {
 		if (!providerIdExist(provider_id)) {
 			return null;

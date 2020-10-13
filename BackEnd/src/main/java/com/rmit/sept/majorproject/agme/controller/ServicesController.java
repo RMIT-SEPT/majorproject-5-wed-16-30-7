@@ -22,7 +22,7 @@ public class ServicesController {
 	}
 
 	@GetMapping("all-services-distinct")
-	public Iterable<String> getAllServicesDistinct() {
+	public Iterable<Services> getAllServicesDistinct() {
 		return servicesService.getServicesDistinct();
 	}
 
