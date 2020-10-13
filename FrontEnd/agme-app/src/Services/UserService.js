@@ -48,9 +48,20 @@ class UserService {
 
     }
 
-    
 
+    getServices() {
+        return axios.get("http://localhost:8080/api/service/all-services-distinct");
+    }
 
+    getProviderIDs(serviceName) {
+        const providerIDs = "http://localhost:8080/api/service/get-provider-ids/" + serviceName;
+        return axios.get(providerIDs);
+    }
+
+    getProviderName(id) {
+        const providerName = "http://localhost:8080/api/provider/get-provider-name-by-id/" + id;
+        return axios.get(providerName);
+    }
 
 }
 
