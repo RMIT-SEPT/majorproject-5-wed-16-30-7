@@ -21,13 +21,14 @@ public class PersonController {
         this.personService = personService;
     }
 
+    // Also returns the user ID together with accepted status
     @PostMapping("login/{username}")
     public ResponseEntity<?> Login(@PathVariable("username") String username, @Valid @RequestBody String password, BindingResult result) {
         if (result.hasErrors()){
-            return new ResponseEntity<String>("Invalid password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid password", HttpStatus.BAD_REQUEST);
         }
         return personService.Login(username, password) ?
-                new ResponseEntity<>(HttpStatus.ACCEPTED) : new ResponseEntity<>("Wrong password, username given: " + username + ", password given: " + password, HttpStatus.BAD_REQUEST);
+                new ResponseEntity<>(personService.getPersonIdByUsername(username), HttpStatus.ACCEPTED) : new ResponseEntity<>("Wrong password, username given: " + username + ", password given: " + password, HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("register")
@@ -47,7 +48,7 @@ public class PersonController {
             return new ResponseEntity<String>("Invalid Person Object", HttpStatus.BAD_REQUEST);
         }
         return personService.updatePerson(id, person) ?
-                new ResponseEntity<Person>(person, HttpStatus.ACCEPTED) : new ResponseEntity<Person>(person, HttpStatus.BAD_REQUEST);
+                new ResponseEntity<>(person, HttpStatus.ACCEPTED) : new ResponseEntity<>(person, HttpStatus.BAD_REQUEST);
     }
 
     //specific updates, can add more following the same pattern
@@ -65,7 +66,7 @@ public class PersonController {
     public ResponseEntity<?> getPersonAccountType(@PathVariable("personId") Long id) {
         String accountType = personService.getPersonAccountTypeById(id);
         return accountType != null ?
-                new ResponseEntity<>(accountType, HttpStatus.ACCEPTED) : new ResponseEntity<>(accountType, HttpStatus.BAD_REQUEST);
+                new ResponseEntity<>(accountType, HttpStatus.ACCEPTED) : new ResponseEntity<>("Person ID does not exist", HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping

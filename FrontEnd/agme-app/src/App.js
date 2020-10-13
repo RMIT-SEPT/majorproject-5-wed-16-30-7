@@ -9,6 +9,7 @@ import Dashboard from './Components/CustomerDashboard/Dashboard';
 import Home from './Components/Home';
 import ProfilePage from './Components/ProfilePage.js';
 import EditDetails from './Components/EditDetails.js';
+import BookingPage from './Components/BookingPage.js';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/dashboard" component={Dashboard}></Route>
           <Route path="/profile" component={ProfilePage}></Route>
           <Route path="/edit" component={EditDetails}></Route>
+          <Route path="/book" component={BookingPage}></Route>
           <Route path="/" component={Home}></Route>
         </Switch>
       </div>

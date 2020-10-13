@@ -62,8 +62,8 @@ class PersonServiceTest {
 
 				).collect(Collectors.toList())
 		);
-		assertEquals('c', personService.getPersonAccountTypeById((long) 1));
-		assertEquals('a', personService.getPersonAccountTypeById((long) 2));
+		assertEquals("c", personService.getPersonAccountTypeById((long) 1));
+		assertEquals("a", personService.getPersonAccountTypeById((long) 2));
 	}
 
 	@Test
