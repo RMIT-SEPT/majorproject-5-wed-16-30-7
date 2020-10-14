@@ -59,8 +59,13 @@ class UserService {
     }
 
     getProviderName(id) {
-        const providerName = "http://localhost:8080/api/provider/get-provider-name-by-id/" + id;
+        const providerName = "http://localhost:8080/api/provider/get-provider-by-id/" + id;
         return axios.get(providerName);
+    }
+
+
+    getCustomerOngoingBookings() {
+
     }
 
 }
