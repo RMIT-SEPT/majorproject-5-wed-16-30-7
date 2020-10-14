@@ -74,6 +74,11 @@ class UserService {
         return axios.post(createBooking, booking);
     }
 
+    getCustomerPastBooking(user_id) {
+        const pastBookings = "http://localhost:8080/api/booking/booking-history/" + user_id;
+        return axios.get(pastBookings);
+    }
+
 }
 
 export default new UserService()
