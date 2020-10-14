@@ -53,8 +53,8 @@ class UserService {
         return axios.get("http://localhost:8080/api/service/all-services-distinct");
     }
 
-    getProviderIDs(serviceName) {
-        const providerIDs = "http://localhost:8080/api/service/get-provider-ids/" + serviceName;
+    getProviders(serviceName) {
+        const providerIDs = "http://localhost:8080/api/service/get-providers/" + serviceName;
         return axios.get(providerIDs);
     }
 
@@ -67,6 +67,16 @@ class UserService {
     getCustomerOngoingBookings(user_id) {
         const ongoingBookings = "http://localhost:8080/api/booking/ongoing-bookings/" + user_id;
         return axios.get(ongoingBookings);
+    }
+
+    makeNewBooking(booking) {
+        const createBooking = "http://localhost:8080/api/booking/create-booking";
+        return axios.post(createBooking, booking);
+    }
+
+    getCustomerPastBooking(user_id) {
+        const pastBookings = "http://localhost:8080/api/booking/booking-history/" + user_id;
+        return axios.get(pastBookings);
     }
 
 }

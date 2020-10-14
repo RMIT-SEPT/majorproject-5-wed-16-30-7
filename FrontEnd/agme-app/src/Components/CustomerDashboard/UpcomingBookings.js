@@ -50,12 +50,10 @@ class UpcomingBookings extends React.Component {
         const data = res.data;
         console.log(data);
 
-
-
         const bookings = data.map(d => ({
             "id": d.booking_id,
-            "service_name": '',
-            "provider_name": '',
+            "service_name": d.service_name,
+            "provider_name": d.provider_name,
             "date_booked": moment(d.booking_date).format('MMMM Do YYYY, h:mm:ss a')
         }))
 
