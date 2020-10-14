@@ -4,6 +4,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 import UserService from '../Services/UserService.js';
+import 'moment-timezone';
+import moment from 'moment';
+import history from '../Services/history';
+
 
 class BookingPage extends React.Component {
 
@@ -28,8 +32,8 @@ class BookingPage extends React.Component {
         this.setState({ providerIDs: [] });
 
 
-        console.log(`Option selected:`, selectedOption1.value);
-        UserService.getProviderIDs(selectedOption1.value).then(res => {
+        console.log(`Option selected:`, selectedOption1.label);
+        UserService.getProviderIDs(selectedOption1.label).then(res => {
             console.log(res.data);
 
             for (let i = 0; i < res.data.length; ++i) {
@@ -65,33 +69,37 @@ class BookingPage extends React.Component {
     handleDateChange = selectedDate => {
         this.setState({ selectedDate });
         console.log(`Selected Date:`, selectedDate);
+        console.log(moment(selectedDate).format());
     }
 
     async getServiceOptions() {
         const res = await UserService.getServices();
         const data = res.data;
 
-        // console.log(data);
+        console.log(data);
         const options = data.map(d => ({
-            "value": d,
-            "label": d
+            "value": d.service_id,
+            "label": d.service_name
         }))
 
         this.setState({ selectServices: options });
     }
 
-    getProviderOptions() {
-        const data = this.state.providerIDs;
-        console.log("Provider", data);
-        const options = data.map(d => ({
-            "value": d,
-            "label": d
-        }))
-
-        // console.log("Provider:", this.state.providerIDs);
-        this.setState({ selectProvider: options });
-        console.log(options);
+    cancelBooking() {
+        history.push('/');
     }
+    // getProviderOptions() {
+    //     const data = this.state.providerIDs;
+    //     console.log("Provider", data);
+    //     const options = data.map(d => ({
+    //         "value": d,
+    //         "label": d
+    //     }))
+
+    //     // console.log("Provider:", this.state.providerIDs);
+    //     this.setState({ selectProvider: options });
+    //     console.log(options);
+    // }
 
     componentDidMount() {
         this.getServiceOptions();
@@ -144,13 +152,14 @@ class BookingPage extends React.Component {
                                         showTimeSelect
                                         placeholderText="Select a day and time"
                                         dateFormat='MMMM d, yyyy h:mm aa'
+                                        // dateFormat='yyyy-MM-dd, HH:mm:ss'
                                         isValidDate={true}
                                     />
                                 </div>
 
                                 <div className="button-group">
                                     <span ><button className="submit-button"><p>Make Booking</p></button></span>
-                                    <span><button className="cancel-button"><p>Cancel</p></button></span>
+                                    <span><button className="cancel-button" onClick={() => { if (window.confirm('Return to home page?')) { this.cancelBooking() } }}><p>Cancel</p></button></span>
                                 </div>
 
                             </form>
