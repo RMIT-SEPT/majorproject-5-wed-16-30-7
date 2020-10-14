@@ -1,5 +1,6 @@
 package com.rmit.sept.majorproject.agme.service;
 
+import com.rmit.sept.majorproject.agme.model.Provider;
 import com.rmit.sept.majorproject.agme.model.Services;
 import com.rmit.sept.majorproject.agme.repositories.ServicesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,12 @@ import java.util.stream.Collectors;
 @Service
 public class ServicesService {
 	private static ServicesRepository servicesRepository;
+	private ProviderService providerService;
 
 	@Autowired
-	public ServicesService(ServicesRepository servicesRepository) {
+	public ServicesService(ServicesRepository servicesRepository, ProviderService providerService) {
 		this.servicesRepository = servicesRepository;
+		this.providerService = providerService;
 	}
 
 	public static List<Services> getAllServices() {
@@ -41,12 +44,17 @@ public class ServicesService {
 		return true;
 	}
 
-	public List<Long> getProviderIdsByServicesName(String services_name) {
-		return getAllServices()
+	public List<Provider> getProvidersByServicesName(String services_name) {
+		List<Long> providerIds = getAllServices()
 				.stream()
 				.filter(services -> services.getService_name().equals(services_name))
 				.map(Services::getProvider_id)
 				.collect(Collectors.toList());
+		List<Provider> providers = new ArrayList<>();
+		for (Long id : providerIds) {
+			providers.add(providerService.getProvider(id));
+		}
+		return providers;
 	}
 
 
