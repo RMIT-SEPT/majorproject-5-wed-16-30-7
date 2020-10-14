@@ -21,47 +21,45 @@ class BookingPage extends React.Component {
             selectServices: [],
             providerIDs: [],
             selectProvider: [],
-            serviceName: null
+            serviceName: null,
+            provider_id: '',
+            service_id: '',
+            booking_date: ''
 
         };
     };
 
     handleChangeService = selectedOption1 => {
         this.setState({ selectedOption1 });
-        // this.setState({ selectProvider: [] });
         this.setState({ providerIDs: [] });
 
 
-        console.log(`Option selected:`, selectedOption1.label);
-        UserService.getProviderIDs(selectedOption1.label).then(res => {
-            console.log(res.data);
+        console.log(`Service selected:`, selectedOption1);
 
-            for (let i = 0; i < res.data.length; ++i) {
-                UserService.getProviderName(res.data[i]).then(res => {
-                    console.log(res.data);
-                    this.state.providerIDs[i] = res.data;
+        this.setState({ service_id: selectedOption1.value })
+        // console.log(this.state.service_id);
+        UserService.getProviders(selectedOption1.label).then(res => {
 
-                })
-            }
-            // this.getProviderOptions();
+            const data = res.data;
+            const options = data.map(d => ({
+                "value": d.provider_id,
+                "label": d.provider_name
+            }))
+
+            this.setState({ selectProvider: options })
+
         })
 
-        const data = this.state.providerIDs;
-        // console.log("Provider", data);
-        const options = data.map(d => ({
-            "value": d,
-            "label": d
-        }))
-
-        this.setState({ selectProvider: options });
         console.log("PROVIDER:", this.state.selectProvider);
-
 
     };
 
     handleChangeProvider = selectedOption2 => {
         this.setState({ selectedOption2 });
-        console.log(`Option selected:`, selectedOption2);
+        console.log(`Provider selected:`, selectedOption2);
+
+        this.setState({ provider_id: selectedOption2.value })
+
     };
 
 
@@ -69,7 +67,9 @@ class BookingPage extends React.Component {
     handleDateChange = selectedDate => {
         this.setState({ selectedDate });
         console.log(`Selected Date:`, selectedDate);
-        console.log(moment(selectedDate).format());
+        const date = moment(selectedDate).format();
+
+        this.setState({ booking_date: date })
     }
 
     async getServiceOptions() {
@@ -83,23 +83,29 @@ class BookingPage extends React.Component {
         }))
 
         this.setState({ selectServices: options });
+
     }
 
     cancelBooking() {
         history.push('/');
     }
-    // getProviderOptions() {
-    //     const data = this.state.providerIDs;
-    //     console.log("Provider", data);
-    //     const options = data.map(d => ({
-    //         "value": d,
-    //         "label": d
-    //     }))
 
-    //     // console.log("Provider:", this.state.providerIDs);
-    //     this.setState({ selectProvider: options });
-    //     console.log(options);
-    // }
+
+    makeNewBooking = (e) => {
+        e.preventDefault();
+
+        let newBooking = {
+            user_id: 1,
+            service_id: this.state.service_id,
+            provider_id: this.state.provider_id,
+            status: "ongoing",
+            booking_date: this.state.booking_date
+        };
+
+        UserService.makeNewBooking(newBooking).then(history.push('/dashboard'));
+
+        console.log(newBooking);
+    }
 
     componentDidMount() {
         this.getServiceOptions();
@@ -121,7 +127,7 @@ class BookingPage extends React.Component {
 
 
                         <div className="booking-right">
-                            <form>
+                            <form onSubmit={this.makeNewBooking}>
                                 <div className="service">
                                     <h3>Service:</h3>
                                     <Select
@@ -158,7 +164,7 @@ class BookingPage extends React.Component {
                                 </div>
 
                                 <div className="button-group">
-                                    <span ><button className="submit-button"><p>Make Booking</p></button></span>
+                                    <span ><button type="submit" className="submit-button"><p>Make Booking</p></button></span>
                                     <span><button className="cancel-button" onClick={() => { if (window.confirm('Return to home page?')) { this.cancelBooking() } }}><p>Cancel</p></button></span>
                                 </div>
 
