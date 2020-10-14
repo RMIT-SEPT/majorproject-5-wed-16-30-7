@@ -64,8 +64,9 @@ class UserService {
     }
 
 
-    getCustomerOngoingBookings() {
-
+    getCustomerOngoingBookings(user_id) {
+        const ongoingBookings = "http://localhost:8080/api/booking/ongoing-bookings/" + user_id;
+        return axios.get(ongoingBookings);
     }
 
 }
