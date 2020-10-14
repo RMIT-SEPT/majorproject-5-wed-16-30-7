@@ -65,6 +65,18 @@ public class ServicesService {
 				.anyMatch(services -> services.getService_id().equals(services_id));
 	}
 
+	public String getServiceNameById(Long services_id) {
+		if (!servicesIdExist(services_id)) {
+			return null;
+		}
+		return getAllServices()
+				.stream()
+				.filter(services -> services.getService_id().equals(services_id))
+				.findFirst()
+				.map(Services::getService_name)
+				.orElseThrow(() -> new IllegalStateException(String.format("Services ID is not found", services_id)));
+	}
+
 	public static <T> Predicate<T> distinctByKey(
 			Function<? super T, ?> keyExtractor) {
 

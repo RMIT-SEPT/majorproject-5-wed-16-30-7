@@ -24,9 +24,6 @@ public class Booking {
 	@NotBlank
 	private Long provider_id;
 
-//	@NotBlank
-//	private String booking_name;
-
 	// status: ongoing, completed, cancelled
 	@NotBlank
 	private String status;

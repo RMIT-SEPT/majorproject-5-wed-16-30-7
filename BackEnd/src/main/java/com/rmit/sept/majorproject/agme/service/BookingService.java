@@ -1,10 +1,12 @@
 package com.rmit.sept.majorproject.agme.service;
 
 import com.rmit.sept.majorproject.agme.model.Booking;
+import com.rmit.sept.majorproject.agme.model.BookingInfo;
 import com.rmit.sept.majorproject.agme.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,10 +15,14 @@ import java.util.stream.Collectors;
 public class BookingService {
 
 	private static BookingRepository bookingRepository;
+	private ServicesService servicesService;
+	private ProviderService providerService;
 
 	@Autowired
-	public BookingService(BookingRepository bookingRepository) {
+	public BookingService(BookingRepository bookingRepository, ServicesService servicesService, ProviderService providerService) {
 		this.bookingRepository = bookingRepository;
+		this.servicesService = servicesService;
+		this.providerService = providerService;
 	}
 
 	public static List<Booking> getAllBookings() {
@@ -32,12 +38,17 @@ public class BookingService {
 	}
 
 	// get ongoing bookings for a specific user
-	public List<Booking> getOngoingBookings(Long user_id) {
-		return getAllBookings()
+	public List<BookingInfo> getOngoingBookings(Long user_id) {
+		List<Booking> bookings = getAllBookings()
 				.stream()
 				.filter(booking -> booking.getUser_id().equals(user_id))
 				.filter(booking -> booking.getStatus().equals("ongoing"))
 				.collect(Collectors.toList());
+		List<BookingInfo> bookingInfos = new ArrayList<>();
+		for (Booking b : bookings) {
+			bookingInfos.add(new BookingInfo(b.getBooking_id(), b.getUser_id(), b.getService_id(), servicesService.getServiceNameById(b.getService_id()), b.getProvider_id(), providerService.getProviderName(b.getProvider_id()), b.getStatus(), b.getBooking_date()));
+		}
+		return bookingInfos;
 	}
 
 	// get ongoing bookings for a specific service
@@ -51,12 +62,18 @@ public class BookingService {
 	}
 
 	// get booking history (completed+cancelled) for a specific user
-	public List<Booking> getBookingHistory(Long user_id) {
-		return getAllBookings()
+	public List<BookingInfo> getBookingHistory(Long user_id) {
+		List<Booking> bookings = getAllBookings()
 				.stream()
 				.filter(booking -> booking.getUser_id().equals(user_id))
 				.filter(booking -> !booking.getStatus().equals("ongoing"))
 				.collect(Collectors.toList());
+
+		List<BookingInfo> bookingInfos = new ArrayList<>();
+		for (Booking b : bookings) {
+			bookingInfos.add(new BookingInfo(b.getBooking_id(), b.getUser_id(), b.getService_id(), servicesService.getServiceNameById(b.getService_id()), b.getProvider_id(), providerService.getProviderName(b.getProvider_id()), b.getStatus(), b.getBooking_date()));
+		}
+		return bookingInfos;
 	}
 
 	// get booking history (completed only) for a specific user

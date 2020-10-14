@@ -1,6 +1,7 @@
 package com.rmit.sept.majorproject.agme.controller;
 
 import com.rmit.sept.majorproject.agme.model.Booking;
+import com.rmit.sept.majorproject.agme.model.BookingInfo;
 import com.rmit.sept.majorproject.agme.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,13 +43,13 @@ public class BookingController {
 
 	// get ongoing bookings of a specific user
 	@GetMapping("ongoing-bookings/{personId}")
-	public Iterable<Booking> getPersonalOngoingBookings(@PathVariable("personId") Long person_id) {
+	public Iterable<BookingInfo> getPersonalOngoingBookings(@PathVariable("personId") Long person_id) {
 		return bookingService.getOngoingBookings(person_id);
 	}
 
 	// get booking history (both completed and cancelled) of a specific user
 	@GetMapping("booking-history/{personId}")
-	public Iterable<Booking> getPersonalBookingHistory(@PathVariable("personId") Long person_id) {
+	public Iterable<BookingInfo> getPersonalBookingHistory(@PathVariable("personId") Long person_id) {
 		return bookingService.getBookingHistory(person_id);
 	}
 
