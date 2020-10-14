@@ -1,4 +1,5 @@
 import React from 'react';
+import UserService from '../../Services/UserService.js';
 
 class UpcomingBookings extends React.Component {
 
@@ -40,6 +41,10 @@ class UpcomingBookings extends React.Component {
         }
     }
 
+    componentDidMount() {
+        
+    }
+
 
     render() {
         return (
@@ -57,7 +62,7 @@ class UpcomingBookings extends React.Component {
                                         <div className="worker-name">{bookings.worker_name}</div>
                                     </span>
                                     <span className="booking-date">{bookings.date_booked}</span>
-                                    <span className="cancel-button"><button><p>Cancel</p></button></span>
+                                    <span className="cancelButton"><button><p>Cancel</p></button></span>
                                 </div>
                             </li>
                         ))}
