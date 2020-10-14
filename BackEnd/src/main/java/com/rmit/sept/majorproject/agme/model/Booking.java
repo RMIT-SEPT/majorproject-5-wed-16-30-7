@@ -1,5 +1,7 @@
 package com.rmit.sept.majorproject.agme.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
