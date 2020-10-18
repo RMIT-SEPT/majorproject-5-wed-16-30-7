@@ -1,6 +1,7 @@
 import React from 'react';
 import './Dashboard.scss';
 import NavBar from '../Layouts/NavBar.js'
+import Header from '../Layouts/Header.js'
 import PastBookings from './PastBookingsTable.js';
 import UpcomingBookings from './UpcomingBookings.js';
 import TodayBookings from './TodayBookings.js';
@@ -25,6 +26,9 @@ class Dashboard extends React.Component {
                     <h1>My Dashboard</h1>
                     <h1> Welcome {Cookies.get('name')} </h1>
                 </section>
+
+
+                <Header />
 
 
                 <div className="container">

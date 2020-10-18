@@ -107,4 +107,8 @@ public class PersonService {
         }
     }
 
+    public Long getPersonIdByUsername(String username) {
+        return getPersonByUsername(username).getId();
+    }
+
 }
