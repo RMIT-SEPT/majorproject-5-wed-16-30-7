@@ -15,23 +15,8 @@ class UserService {
         return axios.get(API_BASE_URL);
     }
 
-    /*
-    getSpecificCustomer(id){
-        const persons = [];
-        console.log(id);
-        axios.get(API_BASE_URL)
-                .then(res => {
-                    persons = res.data;
-
-                    
-                })
-
-       return persons[id - 1]
-    }
-    */
-    //Register a customer
     createCustomer(customer) {
-        return axios.post(API_BASE_URL + '/register', customer);
+        return axios.post(API_BASE_URL + '/register/', customer);
 
     }
 
@@ -45,7 +30,6 @@ class UserService {
     editCustomer(customer, id) {
         const editURL = "http://localhost:8080/api/person/update/" + id;
         return axios.post(editURL, customer);
-
     }
 
     //Return a list of distinct services
