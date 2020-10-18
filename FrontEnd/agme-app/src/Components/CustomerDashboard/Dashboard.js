@@ -4,14 +4,26 @@ import NavBar from '../Layouts/NavBar.js'
 import PastBookings from './PastBookingsTable.js';
 import UpcomingBookings from './UpcomingBookings.js';
 import TodayBookings from './TodayBookings.js';
-
+import Cookies from 'js-cookie';
+import history from '../../Services/history';
 class Dashboard extends React.Component {
+
+   componentDidMount() {
+       if(Cookies.get('logged_in') == 'false')
+       {
+            history.push('./login');
+
+       }
+
+   }
+
 
     render() {
         return (
             <div>
                 <section className="Header">
                     <h1>My Dashboard</h1>
+                    <h1> Welcome {Cookies.get('name')} </h1>
                 </section>
 
 

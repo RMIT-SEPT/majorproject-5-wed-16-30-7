@@ -34,14 +34,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                         "/**/*.jpg",
                         "/**/*.html",
                         "/**/*.css",
-                        "/**/*.js").permitAll();
+                        "/**/*.js").permitAll()
+                .and()
+                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        ;
         httpSecurity.csrf().disable();
         httpSecurity.headers().frameOptions().disable();
 
     }
 
-    @Bean
 
-    public JwtAuthenticationFilter jwtAuthenticationFilter() { return new JwtAuthenticationFilter();}
 
 }

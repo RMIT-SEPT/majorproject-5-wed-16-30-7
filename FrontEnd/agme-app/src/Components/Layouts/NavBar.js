@@ -2,8 +2,19 @@ import React from 'react';
 import './NavBar.scss';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import Cookies from 'js-cookie';
 class NavBar extends React.Component {
+
+    constructor(props) {
+            super(props);
+            this.logout = this.logout.bind(this);
+        }
+    logout = (e) =>{
+        e.preventDefault();
+       Cookies.set('id', '-1');
+       Cookies.set('logged_in', 'false');
+    }
+
     render() {
         return (
             <section className="navigation">
@@ -17,12 +28,12 @@ class NavBar extends React.Component {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/dashboard" exact activeClassName="current-link">
+
                             <div>
-                                <span className="icon"><FontAwesomeIcon className="fontAwesome" icon="tachometer-alt" /></span>
+                                <span className="icon"><FontAwesomeIcon className="fontAwesome" icon="tachometer-alt" onChange={this.   logout}  /></span>
                                 <span className="title">Dashboard</span>
                             </div>
-                        </NavLink>
+
                     </li>
                     <li>
                         <NavLink to="/profile" exact activeClassName="current-link">
@@ -40,11 +51,11 @@ class NavBar extends React.Component {
                             </div>
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/login" exact activeClassName="current-link">
+                    <li onClick={this.logout}>
+                        <NavLink to="/login" exact activeClassName="current-link"  >
                             <div>
-                                <span className="icon"><FontAwesomeIcon className="fontAwesome" icon="sign-out-alt" /></span>
-                                <span className="title">Logout</span>
+                                <span className="icon"><FontAwesomeIcon className="fontAwesome" icon="sign-out-alt" onChange={this.logout}/></span>
+                                <span className="title" onChange={this.logout}>Logout</span>
                             </div>
                         </NavLink>
                     </li>

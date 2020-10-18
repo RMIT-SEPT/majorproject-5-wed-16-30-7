@@ -27,13 +27,13 @@ public class JwtTokenProvider {
         claims.put("fullName", person.getName());
 
 
-     return Jwts.builder()
-             .setSubject(person.getId().toString())
-             .setClaims(claims)
-             .setIssuedAt(now)
-             .setExpiration(expiry)
-             .signWith(key)
-             .compact();
+        return Jwts.builder()
+                .setSubject(person.getId().toString())
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(expiry)
+                .signWith(key)
+                .compact();
 
     }
 

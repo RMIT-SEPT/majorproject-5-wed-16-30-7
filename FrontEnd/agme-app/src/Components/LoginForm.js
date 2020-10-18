@@ -3,7 +3,7 @@ import './LoginForm.scss';
 import RegistartionForm from './RegistrationForm.js'
 import UserService from '../Services/UserService';
 import history from '../Services/history';
-
+import Cookies from 'js-cookie'
 class LoginForm extends React.Component {
 
     constructor(props) {
@@ -11,12 +11,28 @@ class LoginForm extends React.Component {
         this.state = {
             username: '',
             password: '',
+            persons: [],
             error: ''
         };
-
+        if(Cookies.get('logged_in') == 'true')
+        {
+        history.push('./dashboard')
+        }
         this.handleChange = this.handleChange.bind(this);
         this.getCustomerLogin = this.getCustomerLogin.bind(this);
     }
+
+    componentDidMount() {
+            UserService.getCustomer()
+                .then(res => {
+                    const persons = res.data;
+                    this.setState({ persons });
+                    console.log(this.state.persons);
+                });
+
+    }
+
+
 
     //Change form style for register when register button is clicked
     register() {
@@ -47,6 +63,18 @@ class LoginForm extends React.Component {
         UserService.loginCustomer(this.state.username, this.state.password).then(res => {
             //If login succesful redirect to dashboard
             if (res.status === 202) {
+
+                 Cookies.set('logged_in', 'true');
+                 Cookies.set('password', this.state.password);
+                 {this.state.persons.map(person => {
+                                         console.log(person.id);
+                                        if(person.username  === this.state.username)
+                                        {
+                                            console.log(person.id);
+                                             Cookies.set('id', person.id);
+                                            Cookies.set('name', person.name)
+                                        }
+                                     })}
                 console.log(this.state.error);
                 this.setState({ error: '' });
                 history.push('./dashboard');
@@ -58,12 +86,13 @@ class LoginForm extends React.Component {
 
     }
 
-    //Capture user input values 
+    //Capture user input values
     handleChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
 
         this.setState({ [name]: value }, () => {
+
             // console.log(errors)
         })
     }
