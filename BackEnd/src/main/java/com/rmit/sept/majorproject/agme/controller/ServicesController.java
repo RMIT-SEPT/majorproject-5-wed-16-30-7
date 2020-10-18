@@ -1,5 +1,6 @@
 package com.rmit.sept.majorproject.agme.controller;
 
+import com.rmit.sept.majorproject.agme.model.Provider;
 import com.rmit.sept.majorproject.agme.model.Services;
 import com.rmit.sept.majorproject.agme.service.ServicesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ public class ServicesController {
 	}
 
 	@GetMapping("all-services-distinct")
-	public Iterable<String> getAllServicesDistinct() {
+	public Iterable<Services> getAllServicesDistinct() {
 		return servicesService.getServicesDistinct();
 	}
 
-	@GetMapping("get-provider-ids/{serviceName}")
-	public Iterable<Long> getAllProviderIdsByServicesName(@PathVariable("serviceName") String serviceName) {
-		return servicesService.getProviderIdsByServicesName(serviceName);
+	@GetMapping("get-providers/{serviceName}")
+	public Iterable<Provider> getAllProvidersByServicesName(@PathVariable("serviceName") String serviceName) {
+		return servicesService.getProvidersByServicesName(serviceName);
 	}
 
 	@PostMapping("add-service")

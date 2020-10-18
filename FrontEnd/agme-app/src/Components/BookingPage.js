@@ -4,6 +4,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 import UserService from '../Services/UserService.js';
+import 'moment-timezone';
+import moment from 'moment';
+import history from '../Services/history';
+
 
 class BookingPage extends React.Component {
 
@@ -17,82 +21,93 @@ class BookingPage extends React.Component {
             selectServices: [],
             providerIDs: [],
             selectProvider: [],
-            serviceName: null
+            serviceName: null,
+            provider_id: '',
+            service_id: '',
+            booking_date: ''
 
         };
     };
 
+    //When value of Service is selected
     handleChangeService = selectedOption1 => {
         this.setState({ selectedOption1 });
-        // this.setState({ selectProvider: [] });
         this.setState({ providerIDs: [] });
 
+        //Set state for service id
+        this.setState({ service_id: selectedOption1.value })
 
-        console.log(`Option selected:`, selectedOption1.value);
-        UserService.getProviderIDs(selectedOption1.value).then(res => {
-            console.log(res.data);
+        //Get the providers that corresponds to the service selected
+        UserService.getProviders(selectedOption1.label).then(res => {
 
-            for (let i = 0; i < res.data.length; ++i) {
-                UserService.getProviderName(res.data[i]).then(res => {
-                    console.log(res.data);
-                    this.state.providerIDs[i] = res.data;
+            const data = res.data;
+            //Map data
+            const options = data.map(d => ({
+                "value": d.provider_id,
+                "label": d.provider_name
+            }))
+            //Set state for provider
+            this.setState({ selectProvider: options })
 
-                })
-            }
-            // this.getProviderOptions();
         })
 
-        const data = this.state.providerIDs;
-        // console.log("Provider", data);
-        const options = data.map(d => ({
-            "value": d,
-            "label": d
-        }))
-
-        this.setState({ selectProvider: options });
-        console.log("PROVIDER:", this.state.selectProvider);
-
-
     };
 
+    //When value of provider is selected
     handleChangeProvider = selectedOption2 => {
         this.setState({ selectedOption2 });
-        console.log(`Option selected:`, selectedOption2);
+        //Set state for provider id
+        this.setState({ provider_id: selectedOption2.value })
+
     };
 
 
-
+    //When data is selected
     handleDateChange = selectedDate => {
         this.setState({ selectedDate });
-        console.log(`Selected Date:`, selectedDate);
+        const date = moment(selectedDate).format();
+        //Set state for booking date
+        this.setState({ booking_date: date })
     }
 
+    //Get all distinct services
     async getServiceOptions() {
         const res = await UserService.getServices();
         const data = res.data;
 
-        // console.log(data);
+        //Map data
         const options = data.map(d => ({
-            "value": d,
-            "label": d
+            "value": d.service_id,
+            "label": d.service_name
         }))
 
+        //Set state for services
         this.setState({ selectServices: options });
+
     }
 
-    getProviderOptions() {
-        const data = this.state.providerIDs;
-        console.log("Provider", data);
-        const options = data.map(d => ({
-            "value": d,
-            "label": d
-        }))
-
-        // console.log("Provider:", this.state.providerIDs);
-        this.setState({ selectProvider: options });
-        console.log(options);
+    //Cancel make a booking
+    cancelBooking() {
+        history.push('/');
     }
 
+    //Create a new booking
+    makeNewBooking = (e) => {
+        e.preventDefault();
+
+        let newBooking = {
+            user_id: 1,
+            service_id: this.state.service_id,
+            provider_id: this.state.provider_id,
+            status: "ongoing",
+            booking_date: this.state.booking_date
+        };
+        //Post booking data using axios function then redirect to user dashboard
+        UserService.makeNewBooking(newBooking).then(history.push('/dashboard'));
+
+    }
+
+    //Call get service options
     componentDidMount() {
         this.getServiceOptions();
     }
@@ -113,7 +128,7 @@ class BookingPage extends React.Component {
 
 
                         <div className="booking-right">
-                            <form>
+                            <form onSubmit={this.makeNewBooking}>
                                 <div className="service">
                                     <h3>Service:</h3>
                                     <Select
@@ -144,13 +159,14 @@ class BookingPage extends React.Component {
                                         showTimeSelect
                                         placeholderText="Select a day and time"
                                         dateFormat='MMMM d, yyyy h:mm aa'
+                                        // dateFormat='yyyy-MM-dd, HH:mm:ss'
                                         isValidDate={true}
                                     />
                                 </div>
 
                                 <div className="button-group">
-                                    <span ><button className="submit-button"><p>Make Booking</p></button></span>
-                                    <span><button className="cancel-button"><p>Cancel</p></button></span>
+                                    <span ><button type="submit" className="submit-button"><p>Make Booking</p></button></span>
+                                    <span><button className="cancel-button" onClick={() => { if (window.confirm('Return to home page?')) { this.cancelBooking() } }}><p>Cancel</p></button></span>
                                 </div>
 
                             </form>

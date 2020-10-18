@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactTable from 'react-table-6';
 import 'react-table-6/react-table.css';
-import data from './MOCK_DATA.json';
+import UserService from '../../Services/UserService';
+// import data from './MOCK_DATA.json';
+import 'moment-timezone';
+import moment from 'moment';
 
 class PastBookingsTable extends React.Component {
 
@@ -13,34 +16,62 @@ class PastBookingsTable extends React.Component {
         }
     }
 
-    // componentDidMount() {
-    //     data.map(data => {
-    //         console.log("data", data.service_provider);
-    //     })
-    // }
+    //Get past bookings of a user from the backend
+    async getPastBookings() {
+        //Use axios function to retrieve data
+        const res = await UserService.getCustomerPastBooking(1);
+        const data = res.data;
+
+        //Map data
+        const bookings = data.map(d => ({
+            "id": d.booking_id,
+            "service_name": d.service_name,
+            "provider_name": d.provider_name,
+            "date_booked": moment(d.booking_date).format('MMMM Do YYYY, h:mm:ss a'),
+            "status": d.status
+        }))
+
+        //Set state for pastBookings
+        this.setState({ pastBookings: bookings });
+
+    }
+
+    //Call get past booking
+    componentDidMount() {
+        this.getPastBookings();
+    }
 
     render() {
 
         const columns = [
             {
                 Header: "Service Provider",
-                accessor: "service_provider",
+                accessor: "provider_name",
                 sortable: false,
                 style: {
-                    textAlign: "left"
+                    textAlign: "center"
                 }
             },
             {
-                Header: "Employee",
-                accessor: "worker",
+                Header: "Service",
+                accessor: "service_name",
                 sortable: false,
                 style: {
-                    textAlign: "left",
+                    textAlign: "center",
                 }
             },
+            {
+                Header: "Status",
+                accessor: "status",
+                sortable: false,
+                style: {
+                    textAlign: "center",
+                }
+            },
+
             {
                 Header: "Date",
-                accessor: "date"
+                accessor: "date_booked"
 
             }
         ]
@@ -49,7 +80,7 @@ class PastBookingsTable extends React.Component {
             <div>
                 <ReactTable
                     columns={columns}
-                    data={data}
+                    data={this.state.pastBookings}
                     defaultPageSize={5}
                     noDataText={"You have not made any bookings in the past"}
                 />

@@ -1,5 +1,7 @@
 package com.rmit.sept.majorproject.agme.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -21,9 +23,6 @@ public class Booking {
 
 	@NotBlank
 	private Long provider_id;
-
-//	@NotBlank
-//	private String booking_name;
 
 	// status: ongoing, completed, cancelled
 	@NotBlank
