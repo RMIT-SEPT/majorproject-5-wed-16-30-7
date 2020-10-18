@@ -29,68 +29,69 @@ class BookingPage extends React.Component {
         };
     };
 
+    //When value of Service is selected
     handleChangeService = selectedOption1 => {
         this.setState({ selectedOption1 });
         this.setState({ providerIDs: [] });
 
-
-        console.log(`Service selected:`, selectedOption1);
-
+        //Set state for service id
         this.setState({ service_id: selectedOption1.value })
-        // console.log(this.state.service_id);
+
+        //Get the providers that corresponds to the service selected
         UserService.getProviders(selectedOption1.label).then(res => {
 
             const data = res.data;
+            //Map data
             const options = data.map(d => ({
                 "value": d.provider_id,
                 "label": d.provider_name
             }))
-
+            //Set state for provider
             this.setState({ selectProvider: options })
 
         })
 
-        console.log("PROVIDER:", this.state.selectProvider);
-
     };
 
+    //When value of provider is selected
     handleChangeProvider = selectedOption2 => {
         this.setState({ selectedOption2 });
-        console.log(`Provider selected:`, selectedOption2);
-
+        //Set state for provider id
         this.setState({ provider_id: selectedOption2.value })
 
     };
 
 
-
+    //When data is selected
     handleDateChange = selectedDate => {
         this.setState({ selectedDate });
-        console.log(`Selected Date:`, selectedDate);
         const date = moment(selectedDate).format();
-
+        //Set state for booking date
         this.setState({ booking_date: date })
     }
 
+    //Get all distinct services
     async getServiceOptions() {
         const res = await UserService.getServices();
         const data = res.data;
 
-        console.log(data);
+        //Map data
         const options = data.map(d => ({
             "value": d.service_id,
             "label": d.service_name
         }))
 
+        //Set state for services
         this.setState({ selectServices: options });
 
     }
 
+    //Cancel make a booking
     cancelBooking() {
         history.push('/');
     }
 
-
+    //Create a new booking
     makeNewBooking = (e) => {
         e.preventDefault();
 
@@ -101,12 +102,12 @@ class BookingPage extends React.Component {
             status: "ongoing",
             booking_date: this.state.booking_date
         };
-
+        //Post booking data using axios function then redirect to user dashboard
         UserService.makeNewBooking(newBooking).then(history.push('/dashboard'));
 
-        console.log(newBooking);
     }
 
+    //Call get service options
     componentDidMount() {
         this.getServiceOptions();
     }

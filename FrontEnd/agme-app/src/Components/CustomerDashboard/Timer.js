@@ -10,6 +10,7 @@ class Timer extends React.Component {
 
     }
 
+    //Set time to local time and update every second
     componentDidMount() {
         setInterval(() => {
             this.setState({ time: new Date().toLocaleTimeString() });

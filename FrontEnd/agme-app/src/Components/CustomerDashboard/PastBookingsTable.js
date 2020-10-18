@@ -16,11 +16,13 @@ class PastBookingsTable extends React.Component {
         }
     }
 
+    //Get past bookings of a user from the backend
     async getPastBookings() {
+        //Use axios function to retrieve data
         const res = await UserService.getCustomerPastBooking(1);
         const data = res.data;
-        console.log(data);
 
+        //Map data
         const bookings = data.map(d => ({
             "id": d.booking_id,
             "service_name": d.service_name,
@@ -29,10 +31,12 @@ class PastBookingsTable extends React.Component {
             "status": d.status
         }))
 
+        //Set state for pastBookings
         this.setState({ pastBookings: bookings });
-        console.log(this.state.pastBookings);
+
     }
 
+    //Call get past booking
     componentDidMount() {
         this.getPastBookings();
     }

@@ -15,6 +15,7 @@ class UpcomingBookings extends React.Component {
                 high: "#E0404C"
             }],
 
+            //Mock data to be used incase for testing
             upcomingBookings: [{
                 id: 0,
                 service_name: "Service Name",
@@ -45,11 +46,13 @@ class UpcomingBookings extends React.Component {
         }
     }
 
+    //Get ongoing bookings of a user from backend
     async getOngoingBookings() {
+        //Call axios function to retrieve data
         const res = await UserService.getCustomerOngoingBookings(1);
         const data = res.data;
-        console.log(data);
 
+        //Map data
         const bookings = data.map(d => ({
             "id": d.booking_id,
             "service_name": d.service_name,
@@ -57,10 +60,12 @@ class UpcomingBookings extends React.Component {
             "date_booked": moment(d.booking_date).format('MMMM Do YYYY, h:mm:ss a')
         }))
 
+        //Set state for ongoingBookings
         this.setState({ ongoingBookings: bookings });
-        console.log(this.state.ongoingBookings);
+
     }
 
+    //Call getOngoingBookings 
     componentDidMount() {
         this.getOngoingBookings();
     }
